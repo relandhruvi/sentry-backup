@@ -1,0 +1,7 @@
+BATCH p13: write exactly 100 rows, all with lang=en.
+- 45 rows category=scam, mostly about: electricity bill unpaid, connection cut tonight; TRAI / telecom: SIM to be disconnected, Aadhaar misuse; fake customs: gift parcel from abroad held, pay duty.
+  Give extra weight to the stage: openings and trust building, but cover all stages.
+- 30 rows category=hard_negative (all BENIGN), mostly about: school calling a grandparent about a child; genuine family emergency (relative actually ill, needs help, no secrecy); electricity board announcing scheduled maintenance outage.
+- 25 rows category=chat (all BENIGN): recipes, shopping, neighbours.
+- The listener is often (not always) a pensioner couple in Jaipur.
+- About a third of rows have spoken_noise=true.

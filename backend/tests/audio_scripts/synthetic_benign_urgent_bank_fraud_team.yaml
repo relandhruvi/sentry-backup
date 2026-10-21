@@ -1,0 +1,24 @@
+id: synthetic_benign_urgent_bank_fraud_team
+category: benign_urgent
+speakers:
+  caller: {voice: Tara, rate: 170}
+  elder: {voice: Aman, rate: 155}
+turns:
+  - speaker: caller
+    lang: en
+    text: "Hello sir, this is the fraud prevention team at HDFC Bank. We noticed an unusual card transaction of forty five thousand rupees just now."
+  - speaker: elder
+    lang: en
+    text: "No, I did not make any such payment."
+  - speaker: caller
+    lang: en
+    text: "Thank you for confirming. We have already blocked the card, so no further payments will go through."
+  - speaker: caller
+    lang: en
+    text: "Please remember, the bank will never ask for your OTP or PIN. Never share them with anyone who calls you."
+  - speaker: caller
+    lang: en
+    text: "If you want, you can call us back on the number printed on the back of your card, or visit your branch with your son."
+  - speaker: elder
+    lang: en
+    text: "Thank you, I will go to the branch tomorrow."

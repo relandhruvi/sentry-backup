@@ -1,0 +1,193 @@
+# B3 acceptance fixtures: multi-utterance conversations, TEST DATA ONLY (never used by the app).
+# Only caller turns are scored; in the live system the backend analyzes the caller's audio.
+# Expected: scams end at HIGH or CRITICAL; benign-urgent calls never exceed MEDIUM.
+# Benign calls deliberately include hard cases: real fraud alerts that mention OTP/PIN, delivery
+# OTPs, real police verification, real payment reminders.
+
+conversations:
+  # ---------------------------------------------------------------- scams
+  - id: scam_cbi_digital_arrest
+    category: scam
+    lang: en
+    turns:
+      - {speaker: caller, text: "Good morning, I am Officer Vikram Singh from the Central Bureau of Investigation, Delhi."}
+      - {speaker: elder, text: "Yes? What happened?"}
+      - {speaker: caller, text: "A SIM card registered on your Aadhaar was used for illegal transactions. There is a non-bailable arrest warrant against you."}
+      - {speaker: caller, text: "You are now under digital arrest. Stay on this video call and do not disconnect."}
+      - {speaker: caller, text: "This is a confidential investigation. You must not discuss it with your family or your bank."}
+      - {speaker: caller, text: "To prove your innocence you have to transfer your savings to an RBI verification account. The money is fully refundable."}
+
+  - id: scam_customs_parcel
+    category: scam
+    lang: hinglish
+    turns:
+      - {speaker: caller, text: "Namaste ji, main FedEx courier se bol raha hoon, aapke naam ka ek parcel Mumbai customs ne pakda hai."}
+      - {speaker: caller, text: "Parcel mein paanch passport aur drugs mile hain, isliye case narcotics department ko chala gaya hai."}
+      - {speaker: elder, text: "Maine koi parcel nahi bheja."}
+      - {speaker: caller, text: "Main aapko Mumbai police ke officer se connect kar raha hoon. Aapke khilaf FIR register ho chuki hai."}
+      - {speaker: caller, text: "Ye matter bahut sensitive hai, ghar mein kisi ko kuch mat batana warna case aur bigad jayega."}
+      - {speaker: caller, text: "Clearance ke liye aapko abhi turant ek lakh rupaye is account mein bhejne honge."}
+
+  - id: scam_trai_sim_block
+    category: scam
+    lang: hi
+    turns:
+      - {speaker: caller, text: "नमस्कार, मैं ट्राई के दफ्तर से बोल रहा हूँ।"}
+      - {speaker: caller, text: "आपके आधार से लिया गया एक सिम कार्ड गैरकानूनी कामों में इस्तेमाल हुआ है। दो घंटे में आपके सारे नंबर बंद हो जाएंगे।"}
+      - {speaker: caller, text: "आपके खिलाफ मुंबई पुलिस में शिकायत दर्ज है, आपको गिरफ्तार किया जा सकता है।"}
+      - {speaker: elder, text: "मुझे कुछ नहीं पता इसके बारे में।"}
+      - {speaker: caller, text: "यह बात किसी को मत बताइए, नहीं तो जांच खराब हो जाएगी।"}
+      - {speaker: caller, text: "अपना नाम साफ करवाने के लिए सुरक्षा राशि के रूप में पचास हज़ार रुपये ट्रांसफर करने होंगे।"}
+
+  - id: scam_electricity_disconnection
+    category: scam
+    lang: hinglish
+    turns:
+      - {speaker: caller, text: "Hello, main bijli vibhag se bol raha hoon, aapka pichhle mahine ka bill update nahi hua hai."}
+      - {speaker: caller, text: "Aaj raat saade nau baje aapki bijli kaat di jayegi."}
+      - {speaker: caller, text: "Abhi turant hamare officer ka number note kijiye, nau aath saat shunya ek do teen chaar paanch chhe."}
+      - {speaker: caller, text: "Main aapko ek link bhej raha hoon, usse app download kijiye aur jo code aaye wo mujhe bataiye."}
+      - {speaker: caller, text: "Ye jaldi karna hai, nahi to kal se connection hamesha ke liye band ho jayega."}
+
+  - id: scam_kyc_link
+    category: scam
+    lang: en
+    turns:
+      - {speaker: caller, text: "Dear customer, this is the KYC cell of HDFC Bank calling about your savings account."}
+      - {speaker: caller, text: "Your KYC is pending and your account will be suspended by tonight if it is not updated."}
+      - {speaker: caller, text: "Open the link www dot hdfc-kyc-verify dot com that I sent by SMS and enter your card number and CVV."}
+      - {speaker: caller, text: "Now you will get an OTP. Tell me the OTP quickly so I can complete the update."}
+      - {speaker: caller, text: "Please don't go to the branch, there is a huge queue and they cannot help you today."}
+
+  - id: scam_grandson_accident
+    category: scam
+    lang: hi
+    turns:
+      - {speaker: caller, text: "दादी, मैं रोहन बोल रहा हूँ, मेरी आवाज़ थोड़ी अलग लग रही होगी, फोन खराब है।"}
+      - {speaker: caller, text: "मेरा एक्सीडेंट हो गया और पुलिस ने मुझे पकड़ लिया है, मुझे बहुत डर लग रहा है।"}
+      - {speaker: caller, text: "प्लीज़ मम्मी पापा को मत बताना, वो बहुत गुस्सा होंगे।"}
+      - {speaker: caller, text: "इंस्पेक्टर साहब कह रहे हैं कि अभी तीस हज़ार रुपये भेज दो तो मामला यहीं खत्म हो जाएगा।"}
+      - {speaker: caller, text: "मैं आपको यूपीआई आईडी भेजता हूँ, जल्दी से गूगल पे कर दो।"}
+
+  - id: scam_refund_remote_access
+    category: scam
+    lang: en
+    turns:
+      - {speaker: caller, text: "Hello sir, I am calling from the refund department of your bank about an extra charge."}
+      - {speaker: caller, text: "You were charged twice for your insurance premium and we need to return eleven thousand rupees."}
+      - {speaker: caller, text: "Please install the AnyDesk app from the Play Store so I can process the refund on your phone."}
+      - {speaker: caller, text: "Now open your banking app and enter your UPI PIN to receive the refund."}
+      - {speaker: caller, text: "Do not cut the call and do not talk to anyone while it processes, or it will fail and your account may be frozen."}
+
+  - id: scam_ed_money_laundering
+    category: scam
+    lang: hinglish
+    turns:
+      - {speaker: caller, text: "Main Enforcement Directorate se Deputy Director Sharma bol rahi hoon."}
+      - {speaker: caller, text: "Aapke bank account mein money laundering ka paisa aaya hai, aapka naam ek bade case mein hai."}
+      - {speaker: caller, text: "Aapko abhi video call par rehna hoga, ye digital arrest hai, room ka darwaza band kar lijiye."}
+      - {speaker: caller, text: "Is investigation ke baare mein apne bachchon ko bhi mat bataiye, ye top secret hai."}
+      - {speaker: caller, text: "Saare funds ka verification hoga, sab paisa ek government safe account mein daal dijiye, check ke baad wapas mil jayega."}
+
+  - id: scam_lottery_fee
+    category: scam
+    lang: hi
+    turns:
+      - {speaker: caller, text: "बधाई हो! मैं कौन बनेगा करोड़पति के ऑफिस से बोल रहा हूँ, आपने पच्चीस लाख की लॉटरी जीती है।"}
+      - {speaker: caller, text: "अगर आज टैक्स नहीं भरा तो इनाम रद्द हो जाएगा और आप पर कानूनी कार्रवाई होगी।"}
+      - {speaker: caller, text: "यह इनाम गुप्त रखिए, किसी रिश्तेदार को मत बताइए वरना वो हिस्सा मांगेंगे।"}
+      - {speaker: caller, text: "पहले साढ़े बारह हज़ार रुपये प्रोसेसिंग फीस जमा करनी होगी, अभी इस नंबर पर फोनपे कर दीजिए।"}
+
+  - id: scam_police_son_detained
+    category: scam
+    lang: en
+    turns:
+      - {speaker: caller, text: "This is Inspector Rathore from the Andheri police station."}
+      - {speaker: caller, text: "Your son has been detained. If you want to avoid an FIR against him you must cooperate right now."}
+      - {speaker: elder, text: "Please let me talk to him."}
+      - {speaker: caller, text: "Do not call your son or anyone else, his phone has been seized and it will only make things worse."}
+      - {speaker: caller, text: "Keep this between us. Send fifty thousand rupees on Google Pay to this number immediately and he will be released."}
+
+  # ---------------------------------------------------------------- benign, urgent
+  - id: benign_bank_fraud_alert
+    category: benign_urgent
+    lang: en
+    turns:
+      - {speaker: caller, text: "Hello, this is the fraud monitoring team from ICICI Bank. We blocked a suspicious transaction of twenty thousand rupees on your credit card."}
+      - {speaker: caller, text: "If you did not make it, nothing more is needed now. Your card is blocked and a new one will be posted to you."}
+      - {speaker: caller, text: "Please remember we will never ask for your OTP, PIN or CVV. Do not share these with anyone."}
+      - {speaker: caller, text: "If you have any doubt, call the number printed on the back of your card or visit your nearest branch."}
+
+  - id: benign_hospital_admission
+    category: benign_urgent
+    lang: hi
+    turns:
+      - {speaker: caller, text: "नमस्ते, मैं सिटी अस्पताल से बोल रही हूँ, आपके पति को सीने में दर्द की वजह से इमरजेंसी में भर्ती किया गया है।"}
+      - {speaker: caller, text: "अभी उनकी हालत स्थिर है, डॉक्टर जांच कर रहे हैं।"}
+      - {speaker: caller, text: "आप जल्दी आ जाइए और परिवार में किसी को साथ ले आइए।"}
+      - {speaker: caller, text: "आने पर रिसेप्शन पर फॉर्म भरना होगा, भुगतान अस्पताल के काउंटर पर ही होगा।"}
+
+  - id: benign_school_injury
+    category: benign_urgent
+    lang: hinglish
+    turns:
+      - {speaker: caller, text: "Hello, main DPS school se Mrs. Kapoor bol rahi hoon, aapke pote ko khelte waqt chot lag gayi hai."}
+      - {speaker: caller, text: "Ghabraiye mat, school nurse ne first aid de diya hai."}
+      - {speaker: caller, text: "Aap ya uske papa jaldi school aa jaiye, use ghar le jaana behtar rahega."}
+
+  - id: benign_delivery_otp
+    category: benign_urgent
+    lang: hinglish
+    turns:
+      - {speaker: caller, text: "Hello madam, main Amazon delivery se bol raha hoon, aapka parcel aaya hai."}
+      - {speaker: caller, text: "Main aapke gate pe khada hoon, aap neeche aa sakti hain?"}
+      - {speaker: caller, text: "Parcel lene ke liye aapke phone pe jo delivery OTP aaya hai wo mujhe dikha dijiye jab aap aayengi."}
+
+  - id: benign_police_passport_verification
+    category: benign_urgent
+    lang: hi
+    turns:
+      - {speaker: caller, text: "नमस्ते, मैं थाने से हेड कांस्टेबल यादव बोल रहा हूँ, आपके पासपोर्ट वेरिफिकेशन के लिए।"}
+      - {speaker: caller, text: "कल सुबह ग्यारह बजे थाने आ जाइए, अपना आधार कार्ड और पता प्रमाण साथ ले आइए।"}
+      - {speaker: caller, text: "चाहें तो अपने बेटे को भी साथ ला सकते हैं, इसकी कोई फीस नहीं है।"}
+
+  - id: benign_son_car_breakdown
+    category: benign_urgent
+    lang: en
+    turns:
+      - {speaker: caller, text: "Hi Ma, it's me, my car broke down on the highway near Panipat."}
+      - {speaker: caller, text: "Don't worry, I'm safe and the mechanic is on the way."}
+      - {speaker: caller, text: "I will be late for dinner, please tell Papa so he doesn't wait for me."}
+      - {speaker: caller, text: "My phone battery is low, so I'll call you back once I reach home."}
+
+  - id: benign_power_maintenance
+    category: benign_urgent
+    lang: hi
+    turns:
+      - {speaker: caller, text: "नमस्कार, यह बिजली विभाग की ओर से सूचना है, कल सुबह दस से दो बजे तक रखरखाव के लिए बिजली बंद रहेगी।"}
+      - {speaker: caller, text: "अगर आपका बिल बकाया है तो आप वेबसाइट या ऐप से भुगतान कर सकते हैं, फोन पर किसी को भुगतान न करें।"}
+      - {speaker: caller, text: "ज़्यादा जानकारी के लिए अपने बिल पर छपे हेल्पलाइन नंबर पर संपर्क करें।"}
+
+  - id: benign_pharmacy_refill
+    category: benign_urgent
+    lang: en
+    turns:
+      - {speaker: caller, text: "Hello, this is Apollo Pharmacy. Your blood pressure medicine is due for a refill today."}
+      - {speaker: caller, text: "Please try not to miss a dose, so pick it up as soon as possible."}
+      - {speaker: caller, text: "You can pay when you collect it at the counter, or ask your daughter to collect it for you."}
+
+  - id: benign_bank_locker_rent
+    category: benign_urgent
+    lang: hinglish
+    turns:
+      - {speaker: caller, text: "Namaste uncle ji, main SBI Malviya Nagar branch se manager bol raha hoon."}
+      - {speaker: caller, text: "Aapke locker ka rent is mahine ke end tak due hai, warna late fee lag sakti hai."}
+      - {speaker: caller, text: "Aap branch aakar payment kar dijiye ya net banking se bhi ho jayega. Phone par koi details mat dijiye."}
+
+  - id: benign_neighbour_water_leak
+    category: benign_urgent
+    lang: hi
+    turns:
+      - {speaker: caller, text: "भाभी जी, मैं नीचे वाले फ्लैट से शर्मा बोल रहा हूँ।"}
+      - {speaker: caller, text: "आपके बाथरूम से हमारे घर में पानी टपक रहा है, तुरंत अपना मेन वाल्व बंद कर दीजिए।"}
+      - {speaker: caller, text: "मैंने सोसायटी के प्लंबर को बुला लिया है, वो दस मिनट में आ जाएगा।"}

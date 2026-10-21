@@ -1,0 +1,7 @@
+BATCH p23: write exactly 100 rows, all with lang=hi.
+- 45 rows category=scam, mostly about: bank KYC expiry / account block, asks for OTP or link; relative in trouble: grandson/son in accident or arrested, voice-clone style plea; electricity bill unpaid, connection cut tonight.
+  Give extra weight to the stage: openings and trust building, but cover all stages.
+- 30 rows category=hard_negative (all BENIGN), mostly about: real police: passport or tenant verification visit; delivery agent at the door asking for the delivery OTP; school calling a grandparent about a child.
+- 25 rows category=chat (all BENIGN): recipes, shopping, neighbours.
+- The listener is often (not always) a retired teacher in Lucknow.
+- About a third of rows have spoken_noise=true.

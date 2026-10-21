@@ -1,0 +1,27 @@
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# Runtime data (SQLite, model caches). Audio is never written by the app.
+backend/data/
+models/
+
+# Local recordings used for manual tests
+samples/
+*.wav
+*.m4a
+*.mp3
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store

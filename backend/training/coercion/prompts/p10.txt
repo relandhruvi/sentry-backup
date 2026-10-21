@@ -1,0 +1,7 @@
+BATCH p10: write exactly 100 rows, all with lang=en.
+- 45 rows category=scam, mostly about: sextortion: obscene video call recorded, pay or it gets leaked; fake army officer buying furniture/OLX, 'send 1 rupee to receive payment'; insurance policy bonus / lapsed policy maturity.
+  Give extra weight to the stage: the money or credential ask and follow-ups after payment, but cover all stages.
+- 30 rows category=hard_negative (all BENIGN), mostly about: grandchild warning grandparent about scam calls; family lawyer reminding about a property paperwork deadline; gas cylinder booking / DTH recharge reminder.
+- 25 rows category=chat (all BENIGN): grandchildren's studies, pets, garden.
+- The listener is often (not always) a ex-army man in Dehradun.
+- About a third of rows have spoken_noise=true.

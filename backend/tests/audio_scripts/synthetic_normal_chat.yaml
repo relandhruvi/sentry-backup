@@ -1,0 +1,21 @@
+id: synthetic_normal_chat
+category: normal
+speakers:
+  caller: {voice: Aman, rate: 170}
+  elder: {voice: Tara, rate: 160}
+turns:
+  - speaker: caller
+    lang: hinglish
+    text: "Hello Mummy, kaise ho? Aaj khaane mein kya banaya?"
+  - speaker: elder
+    lang: en
+    text: "I made rajma chawal today. Your father went for his morning walk."
+  - speaker: caller
+    lang: hinglish
+    text: "Arre wah. Main Sunday ko bachchon ke saath aa raha hoon, sab milke lunch karenge."
+  - speaker: elder
+    lang: en
+    text: "That is lovely. Did you watch the cricket match yesterday?"
+  - speaker: caller
+    lang: hinglish
+    text: "Haan, last over mein jeet gaye. Papa ko bolna main shaam ko phone karunga."

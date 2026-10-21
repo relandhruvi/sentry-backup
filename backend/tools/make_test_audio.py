@@ -1,0 +1,199 @@
+"""Render the SYNTHETIC test call scripts to 16 kHz mono WAV using macOS `say` + ffmpeg.
+
+For pipeline testing only. Never use the output to train or evaluate the voice anti-spoof model.
+
+Each script in tests/audio_scripts/*.yaml becomes:
+  <out>/<id>.wav    16 kHz mono int16, turns separated by natural pauses
+  <out>/<id>.json   turn timings (start/end seconds, speaker, lang, voice, text) for WER scoring
+
+Usage: python tools/make_test_audio.py [--scripts DIR] [--out DIR] [--only ID ...]
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import random
+import shutil
+import subprocess
+import sys
+import tempfile
+import wave
+from pathlib import Path
+
+import numpy as np
+import yaml
+
+BACKEND_DIR = Path(__file__).resolve().parents[1]
+DEFAULT_SCRIPTS = BACKEND_DIR / "tests" / "audio_scripts"
+DEFAULT_OUT = BACKEND_DIR.parent / "samples" / "synthetic_tts"
+SAMPLE_RATE = 16_000
+
+LEAD_IN_S = 0.5
+TAIL_S = 1.0
+# Pause between turns is drawn from this range (seeded per script, so renders are reproducible).
+PAUSE_RANGE_S = (0.7, 1.3)
+
+
+def require(binary: str, hint: str) -> str:
+    path = shutil.which(binary)
+    if path is None:
+        sys.exit(f"error: `{binary}` not found. {hint}")
+    return path
+
+
+def installed_voices(say: str) -> list[str]:
+    out = subprocess.run([say, "-v", "?"], capture_output=True, text=True, check=True).stdout
+    # Lines look like "Rishi   en_IN   # Hello!..." or "Aman (English (India)) en_IN   # ...".
+    return [
+        line.split("#")[0].rsplit(None, 1)[0].strip() for line in out.splitlines() if "#" in line
+    ]
+
+
+def resolve_voice(name: str, voices: list[str]) -> str | None:
+    """Exact name, else the first installed variant listed as "<name> (...)"."""
+    if name in voices:
+        return name
+    return next((v for v in voices if v.startswith(f"{name} (")), None)
+
+
+def render_turn(
+    say: str, ffmpeg: str, voice: str, rate: int, text: str, workdir: Path
+) -> np.ndarray:
+    text_file = workdir / "turn.txt"
+    aiff = workdir / "turn.aiff"
+    text_file.write_text(text, encoding="utf-8")
+    subprocess.run(
+        [say, "-v", voice, "-r", str(rate), "-o", str(aiff), "-f", str(text_file)], check=True
+    )
+    pcm = subprocess.run(
+        [
+            ffmpeg,
+            "-v",
+            "error",
+            "-i",
+            str(aiff),
+            "-ac",
+            "1",
+            "-ar",
+            str(SAMPLE_RATE),
+            "-f",
+            "s16le",
+            "-",
+        ],
+        capture_output=True,
+        check=True,
+    ).stdout
+    return np.frombuffer(pcm, dtype=np.int16)
+
+
+def silence(seconds: float) -> np.ndarray:
+    return np.zeros(int(round(seconds * SAMPLE_RATE)), dtype=np.int16)
+
+
+def render_script(
+    script: dict, say: str, ffmpeg: str, out_dir: Path, voices: dict[str, str]
+) -> Path:
+    script_id = script["id"]
+    if not script_id.startswith("synthetic_"):
+        sys.exit(f"error: script id {script_id!r} must start with 'synthetic_'")
+    rng = random.Random(script_id)
+    speakers = script["speakers"]
+
+    chunks = [silence(LEAD_IN_S)]
+    cursor = LEAD_IN_S
+    turns = []
+    with tempfile.TemporaryDirectory() as tmp:
+        for i, turn in enumerate(script["turns"]):
+            if i:
+                pause = silence(rng.uniform(*PAUSE_RANGE_S))
+                chunks.append(pause)
+                cursor += len(pause) / SAMPLE_RATE
+            spk = speakers[turn["speaker"]]
+            voice = voices[spk["voice"]]
+            audio = render_turn(say, ffmpeg, voice, spk["rate"], turn["text"], Path(tmp))
+            chunks.append(audio)
+            duration = len(audio) / SAMPLE_RATE
+            turns.append(
+                {
+                    "index": i,
+                    "speaker": turn["speaker"],
+                    "voice": voice,
+                    "lang": turn["lang"],
+                    "text": turn["text"],
+                    "start_s": round(cursor, 3),
+                    "end_s": round(cursor + duration, 3),
+                }
+            )
+            cursor += duration
+    chunks.append(silence(TAIL_S))
+    pcm = np.concatenate(chunks)
+
+    out_dir.mkdir(parents=True, exist_ok=True)
+    wav_path = out_dir / f"{script_id}.wav"
+    with wave.open(str(wav_path), "wb") as wav:
+        wav.setnchannels(1)
+        wav.setsampwidth(2)
+        wav.setframerate(SAMPLE_RATE)
+        wav.writeframes(pcm.tobytes())
+    manifest = {
+        "id": script_id,
+        "synthetic": True,
+        "note": "SYNTHETIC TTS audio for pipeline testing only. Not for anti-spoof training/eval.",
+        "category": script["category"],
+        "sample_rate": SAMPLE_RATE,
+        "duration_s": round(len(pcm) / SAMPLE_RATE, 3),
+        "turns": turns,
+    }
+    (out_dir / f"{script_id}.json").write_text(
+        json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+    return wav_path
+
+
+OUT_README = """SYNTHETIC TEST AUDIO - macOS text-to-speech, not real people.
+
+Generated by backend/tools/make_test_audio.py from backend/tests/audio_scripts/*.yaml.
+For pipeline testing only (ingest, VAD, STT, event flow).
+NEVER use these files to train, calibrate or evaluate the voice anti-spoof model.
+"""
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(
+        description=__doc__, formatter_class=argparse.RawTextHelpFormatter
+    )
+    parser.add_argument("--scripts", type=Path, default=DEFAULT_SCRIPTS)
+    parser.add_argument("--out", type=Path, default=DEFAULT_OUT)
+    parser.add_argument("--only", nargs="*", help="script ids to render (default: all)")
+    args = parser.parse_args()
+
+    say = require("say", "This tool needs macOS.")
+    ffmpeg = require("ffmpeg", "Install it with: brew install ffmpeg")
+    voices = installed_voices(say)
+
+    scripts = [
+        yaml.safe_load(p.read_text(encoding="utf-8")) for p in sorted(args.scripts.glob("*.yaml"))
+    ]
+    if args.only:
+        scripts = [s for s in scripts if s["id"] in args.only]
+
+    wanted = {spk["voice"] for s in scripts for spk in s["speakers"].values()}
+    resolved = {name: resolve_voice(name, voices) for name in wanted}
+    missing = {name for name, full in resolved.items() if full is None}
+    if missing:
+        sys.exit(
+            f"error: voices not installed: {', '.join(sorted(missing))}. Add them in System Settings → "
+            "Accessibility → Spoken Content → System Voice → Manage Voices."
+        )
+
+    args.out.mkdir(parents=True, exist_ok=True)
+    (args.out / "README.txt").write_text(OUT_README, encoding="utf-8")
+    for script in scripts:
+        path = render_script(script, say, ffmpeg, args.out, resolved)
+        manifest = json.loads(path.with_suffix(".json").read_text(encoding="utf-8"))
+        print(f"{path.name:48s} {manifest['duration_s']:6.1f}s  {len(manifest['turns'])} turns")
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,7 @@
+BATCH p15: write exactly 100 rows, all with lang=hinglish.
+- 45 rows category=scam, mostly about: investment or stock tip group, guaranteed returns; sextortion: obscene video call recorded, pay or it gets leaked; fake army officer buying furniture/OLX, 'send 1 rupee to receive payment'.
+  Give extra weight to the stage: isolation and secrecy instructions, but cover all stages.
+- 30 rows category=hard_negative (all BENIGN), mostly about: real insurance agent: policy renewal due next month; grandchild warning grandparent about scam calls; family lawyer reminding about a property paperwork deadline.
+- 25 rows category=chat (all BENIGN): grandchildren's studies, pets, garden.
+- The listener is often (not always) a widowed homemaker in Pune.
+- About a third of rows have spoken_noise=true.

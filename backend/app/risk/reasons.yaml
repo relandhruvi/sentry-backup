@@ -1,0 +1,155 @@
+# Plain-language reasons shown to the elder and the family (English + Hindi). They describe
+# tactics, never specific calls. {institution} and {stages} are filled from the call's evidence.
+
+tactics:
+  AUTHORITY:
+    en: "The caller claims to be an official"
+    hi: "कॉल करने वाला खुद को अधिकारी बता रहा है"
+  AUTHORITY_INSTITUTION:
+    en: "The caller claims to be from {institution}"
+    hi: "कॉल करने वाला खुद को {institution} से बता रहा है"
+  THREAT:
+    en: "The caller is threatening arrest, penalties or harm"
+    hi: "कॉल करने वाला गिरफ़्तारी, जुर्माने या नुकसान की धमकी दे रहा है"
+  URGENCY:
+    en: "The caller is rushing you to act right now"
+    hi: "कॉल करने वाला तुरंत कुछ करने का दबाव डाल रहा है"
+  SECRECY:
+    en: "The caller wants you to hide this from family or the bank"
+    hi: "कॉल करने वाला चाहता है कि आप यह बात परिवार या बैंक से छिपाएँ"
+  ISOLATION:
+    en: "The caller wants to keep you on the line, cut off from others"
+    hi: "कॉल करने वाला आपको लाइन पर रोककर दूसरों से अलग रखना चाहता है"
+  PAYMENT:
+    en: "The caller is asking you to send money"
+    hi: "कॉल करने वाला आपसे पैसे भेजने को कह रहा है"
+  CREDENTIAL:
+    en: "The caller is asking for an OTP, PIN or bank details"
+    hi: "कॉल करने वाला ओटीपी, पिन या बैंक की जानकारी माँग रहा है"
+
+chain:
+  # Shown when the call has gone through 3+ stages of the scam pattern in order.
+  en: "This call follows a known scam pattern: {stages}"
+  hi: "यह कॉल धोखाधड़ी के जाने-पहचाने तरीके पर चल रही है: {stages}"
+
+stage_names:
+  1: {en: "official claim", hi: "अधिकारी होने का दावा"}
+  2: {en: "threat or pressure", hi: "धमकी या दबाव"}
+  3: {en: "secrecy", hi: "गोपनीयता"}
+  4: {en: "money or OTP demand", hi: "पैसे या ओटीपी की माँग"}
+
+alert:
+  title:
+    HIGH:
+      en: "Possible scam call in progress"
+      hi: "शायद धोखाधड़ी वाली कॉल चल रही है"
+    CRITICAL:
+      en: "Scam call in progress: money or OTP is being demanded"
+      hi: "धोखाधड़ी वाली कॉल चल रही है: पैसे या ओटीपी माँगे जा रहे हैं"
+  # Used with ELDER_NAME set; otherwise action_default.
+  action:
+    en: "Call {name} now"
+    hi: "{name} को अभी फ़ोन करें"
+  action_default:
+    en: "Call them now"
+    hi: "उन्हें अभी फ़ोन करें"
+
+# Verification results (B6). {name} = institution, {official} = official number, {kind} = what was checked.
+verify:
+  kinds:
+    phone: {en: "number", hi: "नंबर"}
+    upi: {en: "UPI ID", hi: "यूपीआई आईडी"}
+    url: {en: "website", hi: "वेबसाइट"}
+  contact:
+    MATCH:
+      en: "This number matches {name}'s official helpline (see the source below). Scammers can fake caller ID, so if unsure, hang up and call this number yourself."
+      hi: "यह नंबर {name} की आधिकारिक हेल्पलाइन से मेल खाता है (नीचे स्रोत देखें)। धोखेबाज़ कॉलर आईडी नकली दिखा सकते हैं, इसलिए शक हो तो फ़ोन काटकर इसी नंबर पर खुद कॉल करें।"
+    MISMATCH:
+      en: "This number is not listed on {name}'s official website. Hang up and call the official number {official} yourself."
+      hi: "यह नंबर {name} की आधिकारिक वेबसाइट पर नहीं है। फ़ोन काटें और आधिकारिक नंबर {official} पर खुद कॉल करें।"
+    OFFICIAL_ONLY:
+      en: "{name}'s official helpline is {official}."
+      hi: "{name} का आधिकारिक हेल्पलाइन नंबर {official} है।"
+    UNKNOWN:
+      en: "We could not find {name}'s helpline on its official website right now."
+      hi: "अभी {name} की आधिकारिक वेबसाइट पर हेल्पलाइन नंबर नहीं मिला।"
+    UNCONFIRMED:
+      en: "We couldn't confirm {name}'s official website from a government or regulator source, so we did not check it online."
+      hi: "हम किसी सरकारी या नियामक स्रोत से {name} की आधिकारिक वेबसाइट की पुष्टि नहीं कर सके, इसलिए इसकी ऑनलाइन जाँच नहीं की।"
+    NOT_LISTED:
+      en: "\"{name}\" is not in our list of official sources, so it was not checked online."
+      hi: "\"{name}\" हमारी आधिकारिक स्रोतों की सूची में नहीं है, इसलिए इसकी ऑनलाइन जाँच नहीं की गई।"
+  advisory:
+    ADVISORY_FOUND:
+      en: "Official warnings about this kind of call:"
+      hi: "इस तरह की कॉल के बारे में सरकारी चेतावनियाँ:"
+    UNKNOWN:
+      en: "No official warning about this kind of call was found right now."
+      hi: "अभी इस तरह की कॉल के बारे में कोई सरकारी चेतावनी नहीं मिली।"
+  reports:
+    REPORTS_FOUND:
+      en: "Some web pages mention this {kind} together with fraud or scam. This is a weak signal; open the links to judge."
+      hi: "कुछ वेब पेजों पर इस {kind} के साथ धोखाधड़ी या स्कैम का ज़िक्र है। यह कमज़ोर संकेत है; लिंक खोलकर देखें।"
+    NO_REPORTS_FOUND:
+      en: "No public reports found for this {kind}. No reports found is NOT proof it's safe."
+      hi: "इस {kind} के बारे में कोई सार्वजनिक शिकायत नहीं मिली। शिकायत न मिलना इस बात का सबूत नहीं है कि यह सुरक्षित है।"
+  UNAVAILABLE:
+    en: "Online check unavailable right now. Nothing was assumed."
+    hi: "ऑनलाइन जाँच अभी उपलब्ध नहीं है। कुछ भी मानकर नहीं चला गया।"
+  reason_mismatch:
+    en: "The caller's number is not on {name}'s official website"
+    hi: "कॉल करने वाले का नंबर {name} की आधिकारिक वेबसाइट पर नहीं है"
+  reason_match:
+    en: "The number matches {name}'s official helpline (caller ID can still be faked)"
+    hi: "नंबर {name} की आधिकारिक हेल्पलाइन से मेल खाता है (फिर भी कॉलर आईडी नकली हो सकती है)"
+  reason_protective:
+    en: "Some of what they said is what genuine organisations advise, such as visiting the branch or never sharing an OTP"
+    hi: "उनकी कुछ बातें वही हैं जो असली संस्थाएँ सलाह देती हैं, जैसे शाखा जाना या ओटीपी कभी न बताना"
+  reason_reports:
+    en: "The web has fraud reports mentioning this {kind}"
+    hi: "इंटरनेट पर इस {kind} से जुड़ी धोखाधड़ी की शिकायतें हैं"
+
+# Manual "Check this caller" next steps. `report` is always last.
+next_steps:
+  mismatch:
+    en: "Hang up. Call {name} yourself on {official}."
+    hi: "फ़ोन काटें। {name} को खुद {official} पर कॉल करें।"
+  otp:
+    en: "Never share an OTP, PIN or password with anyone who calls you."
+    hi: "फ़ोन करने वाले किसी को भी ओटीपी, पिन या पासवर्ड न बताएँ।"
+  money:
+    en: "Do not send money. Real officials never ask for payment on a call."
+    hi: "पैसे न भेजें। असली अधिकारी कभी कॉल पर पैसे नहीं माँगते।"
+  video_call:
+    en: "There is no 'digital arrest' in Indian law. Police never arrest anyone on a video call."
+    hi: "भारतीय कानून में 'डिजिटल अरेस्ट' जैसा कुछ नहीं है। पुलिस वीडियो कॉल पर किसी को गिरफ़्तार नहीं करती।"
+  alone:
+    en: "Tell a family member right now. Scammers want you alone and silent."
+    hi: "अभी परिवार के किसी सदस्य को बताएँ। धोखेबाज़ चाहते हैं कि आप अकेले और चुप रहें।"
+  install_app:
+    en: "Do not install any app a caller asks for. If you already did, uninstall it and call your bank."
+    hi: "कॉल करने वाले के कहने पर कोई ऐप इंस्टॉल न करें। कर लिया हो तो उसे हटाएँ और अपने बैंक को कॉल करें।"
+  match:
+    en: "If you are unsure, hang up and call {official} yourself."
+    hi: "शक हो तो फ़ोन काटें और {official} पर खुद कॉल करें।"
+  general:
+    en: "If anything feels wrong, hang up and call the organisation's official number yourself."
+    hi: "कुछ भी गलत लगे तो फ़ोन काटें और संस्था के आधिकारिक नंबर पर खुद कॉल करें।"
+  report:
+    en: "Report at cybercrime.gov.in or call 1930."
+    hi: "cybercrime.gov.in पर शिकायत करें या 1930 पर कॉल करें।"
+
+# /check: when the claimed organisation can't be checked online. {name} = what was chosen/typed.
+institution_notes:
+  other:
+    en: "We can only check organisations on our trusted list of official websites. To protect privacy we never search the internet for people's names or unknown organisations. You can still: hang up, find the organisation's number yourself (on its official website, your bank card or passbook) and call it back."
+    hi: "हम सिर्फ़ अपनी भरोसेमंद सूची वाली संस्थाओं की आधिकारिक वेबसाइटें जाँच सकते हैं। निजता की रक्षा के लिए हम लोगों के नाम या अनजान संस्थाओं को इंटरनेट पर कभी नहीं खोजते। फिर भी आप: फ़ोन काटें, संस्था का नंबर खुद ढूँढें (उसकी आधिकारिक वेबसाइट, अपने बैंक कार्ड या पासबुक पर) और वहाँ वापस कॉल करें।"
+  unknown:
+    en: "\"{name}\" is not on our trusted list, so it was not checked online. Choose it from the list if it's there, or pick Other."
+    hi: "\"{name}\" हमारी भरोसेमंद सूची में नहीं है, इसलिए इसकी ऑनलाइन जाँच नहीं हुई। सूची में हो तो वहाँ से चुनें, नहीं तो 'अन्य' चुनें।"
+  ask:
+    en: "Which one did you mean? Choose below and we will check it."
+    hi: "आपका मतलब किससे था? नीचे से चुनें, हम उसकी जाँच करेंगे।"
+  unconfirmed:
+    en: "We couldn't confirm {name}'s official website from a government or regulator source, so we did not check it online."
+    hi: "हम किसी सरकारी या नियामक स्रोत से {name} की आधिकारिक वेबसाइट की पुष्टि नहीं कर सके, इसलिए इसकी ऑनलाइन जाँच नहीं की।"

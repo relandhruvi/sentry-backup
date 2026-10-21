@@ -1,0 +1,21 @@
+id: synthetic_benign_urgent_hospital
+category: benign_urgent
+speakers:
+  caller: {voice: Lekha, rate: 160}
+  elder: {voice: Aman, rate: 160}
+turns:
+  - speaker: caller
+    lang: hinglish
+    text: "नमस्ते, मैं City Hospital की emergency ward से nurse बोल रही हूँ।"
+  - speaker: elder
+    lang: hinglish
+    text: "Haan ji, boliye, kya hua?"
+  - speaker: caller
+    lang: hi
+    text: "आपकी पत्नी को चक्कर आने की वजह से भर्ती किया गया है। घबराने की बात नहीं है, डॉक्टर उन्हें देख रहे हैं।"
+  - speaker: caller
+    lang: hinglish
+    text: "आप जल्दी hospital आ जाइए और अपने बेटे को भी साथ ले आइए। Reception पर आकर form भर दीजिए।"
+  - speaker: elder
+    lang: hinglish
+    text: "Theek hai, main aadhe ghante mein pahunch raha hoon."

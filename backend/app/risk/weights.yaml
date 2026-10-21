@@ -1,0 +1,107 @@
+# Risk levels, coercion scoring and (from B4) fusion weights. All tunable numbers live here.
+
+levels:
+  # LOW < medium <= MEDIUM < high <= HIGH < critical <= CRITICAL
+  medium: 0.30
+  high: 0.55
+  critical: 0.80
+  # A level only drops once the score is this far below its lower threshold (no flicker).
+  hysteresis: 0.05
+
+coercion:
+  # Weight of each tactic's strength in the combined score (noisy-OR across tactics).
+  tactic_weights:
+    AUTHORITY: 0.30
+    THREAT: 0.40
+    URGENCY: 0.25
+    SECRECY: 0.40
+    ISOLATION: 0.35
+    PAYMENT: 0.45
+    CREDENTIAL: 0.45
+
+  # Stages of the classic chain: authority -> threat -> secrecy -> payment.
+  stages:
+    AUTHORITY: 1
+    THREAT: 2
+    URGENCY: 2
+    SECRECY: 3
+    ISOLATION: 3
+    PAYMENT: 4
+    CREDENTIAL: 4
+
+  # Multiplier by number of distinct stages reached so far (1..4).
+  chain_factor: {1: 0.60, 2: 0.85, 3: 1.00, 4: 1.10}
+  # Extra multiplier when stages were first reached in chain order (1 before 2 before 3 before 4).
+  ordered_bonus: 0.05
+
+  # Protective cues ("never share your OTP", "call the number on your card") reduce the score
+  # by up to this fraction. Capped so a scammer can't talk the score down by reciting advice.
+  protective_max_reduction: 0.30
+
+  # Evidence age weighting: an utterance's tactic evidence halves every this many seconds.
+  decay_half_life_s: 90
+  # Rule caps (applied after scoring):
+  # a single keyword / single utterance can never reach HIGH
+  min_tactics_for_high: 2
+  min_utterances_for_high: 2
+  # CRITICAL requires one of `critical_requires_any` AND one of `critical_with_any`
+  # (a verification mismatch also satisfies the second condition once verification exists).
+  critical_requires_any: [PAYMENT, CREDENTIAL]
+  critical_with_any: [THREAT, SECRECY]
+  cap_margin: 0.01
+
+matching:
+  # rapidfuzz ratio (0-100) needed for a fuzzy match, by normalized pattern length in characters.
+  # Short patterns (otp, pin, cbi) must match exactly.
+  exact_max_chars: 3
+  min_ratio_short: 92    # 4-6 chars
+  min_ratio_medium: 82   # 7-12 chars
+  min_ratio_long: 78     # 13+ chars
+  # Pattern tokens must align, in order, to distinct window tokens with at least this token ratio
+  # ("kya karna hoga" must not match "jama karna hoga"; "aadhe ghante" must not match
+  # "do ghante"). Negation words must match exactly. Only `optional_tokens` may be missing,
+  # and only in patterns of 3+ tokens.
+  min_token_ratio: 50
+  optional_tokens: ["ke", "ko", "se", "ka", "ki", "ne", "the", "a", "an", "to", "of", "on", "in", "me", "mein", "hai", "ho", "bhi", "is"]
+  # A match's confidence is (ratio - min_ratio) scaled into [floor, 1.0].
+  confidence_floor: 0.75
+
+model_tagger:
+  # The classifier is the primary coercion signal: a detection becomes a hit with
+  # score = weight x probability. Lexicon hits count only in lexicon_fallback mode.
+  weight: 0.8
+  # A lexicon hit may add this much to the classifier probability of the same tactic, only when
+  # the classifier already scores it >= lexicon_boost_gate (tuned on val by
+  # training/coercion/tune_boost.py and stored in models/coercion/model.json; null = off).
+  lexicon_boost: 0.10
+
+fusion:
+  # B4-lite: coercion is the only live signal; voice (B5) and verification (B6) join here with
+  # their own weights, and B7 learns them. A missing signal is reported, never guessed.
+  signal_weights:
+    coercion: 1.0
+  max_reasons: 3
+  # Show the scam-pattern reason once this many chain stages appeared in order.
+  chain_reason_min_stages: 3
+  # Verification evidence (B6), combined with coercion by noisy-OR. Verification alone (no
+  # tactics) is capped below HIGH. A MISMATCH also satisfies the CRITICAL gate.
+  verification:
+    MISMATCH: 0.35
+    REPORTS_FOUND: 0.20
+
+manual_check:
+  # Each thing the person reports the caller asked for counts as one piece of evidence with this
+  # weight (like one utterance carrying that tactic).
+  form_weight: 0.8
+  # Tactics found in a pasted message (classifier trained on speech, not text) count at this
+  # fraction of their normal weight. Protective cues count in full.
+  message_weight: 0.5
+  asked_to:
+    otp: CREDENTIAL
+    money: PAYMENT
+    video_call: ISOLATION
+    secrecy: SECRECY
+    install_app: CREDENTIAL
+    go_alone: ISOLATION
+  # Claimed identities that count as AUTHORITY.
+  authority_identity_types: [bank, police, government, courier, telecom]

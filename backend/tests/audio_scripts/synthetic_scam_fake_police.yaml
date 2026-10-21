@@ -1,0 +1,30 @@
+id: synthetic_scam_fake_police
+category: scam
+speakers:
+  caller: {voice: Rishi, rate: 170}
+  elder: {voice: Lekha, rate: 150}
+turns:
+  - speaker: caller
+    lang: hinglish
+    text: "Hello, main Mumbai Crime Branch se Inspector Rajesh Sharma bol raha hoon."
+  - speaker: elder
+    lang: hi
+    text: "जी, बोलिए, क्या बात है?"
+  - speaker: caller
+    lang: hinglish
+    text: "Aapke Aadhaar card se ek parcel bheja gaya hai jismein drugs mile hain. Aapke naam par FIR darj ho chuki hai."
+  - speaker: elder
+    lang: hi
+    text: "क्या? मैंने तो कोई पार्सल नहीं भेजा।"
+  - speaker: caller
+    lang: en
+    text: "Madam, this is a very serious matter. You are under digital arrest. Do not disconnect this call."
+  - speaker: caller
+    lang: hinglish
+    text: "Yeh baat kisi ko mat bataiye, apne bete ko bhi nahi. Warna aapko abhi giraftaar kar liya jayega."
+  - speaker: elder
+    lang: hi
+    text: "मैं बहुत डर गई हूँ। मुझे क्या करना होगा?"
+  - speaker: caller
+    lang: hinglish
+    text: "Verification ke liye aapko pachaas hazaar rupaye RBI ke safe account mein transfer karne honge. Abhi turant."

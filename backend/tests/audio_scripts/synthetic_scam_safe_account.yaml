@@ -1,0 +1,27 @@
+id: synthetic_scam_safe_account
+category: scam
+speakers:
+  caller: {voice: Lekha, rate: 175}
+  elder: {voice: Lekha, rate: 140}
+turns:
+  - speaker: caller
+    lang: hi
+    text: "नमस्ते, मैं प्रवर्तन निदेशालय, दिल्ली से अधिकारी बोल रही हूँ।"
+  - speaker: elder
+    lang: hi
+    text: "हाँ जी, कहिए।"
+  - speaker: caller
+    lang: hi
+    text: "आपके बैंक खाते का इस्तेमाल मनी लॉन्ड्रिंग में हुआ है। आपके खिलाफ गिरफ्तारी वारंट जारी हो चुका है।"
+  - speaker: elder
+    lang: hi
+    text: "यह कैसे हो सकता है? मैंने कुछ नहीं किया।"
+  - speaker: caller
+    lang: hinglish
+    text: "आपको अपना सारा पैसा जाँच पूरी होने तक एक safe account में transfer करना होगा। जाँच के बाद पूरा पैसा वापस मिल जाएगा।"
+  - speaker: caller
+    lang: hi
+    text: "यह गोपनीय जाँच है। अपने परिवार को या बैंक मैनेजर को कुछ मत बताइए। आज शाम तक पैसा भेज दीजिए।"
+  - speaker: elder
+    lang: hi
+    text: "ठीक है, मैं देखती हूँ।"

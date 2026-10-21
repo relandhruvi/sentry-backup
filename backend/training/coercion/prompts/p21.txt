@@ -1,0 +1,7 @@
+BATCH p21: write exactly 100 rows, all with lang=hinglish.
+- 45 rows category=scam, mostly about: fake army officer buying furniture/OLX, 'send 1 rupee to receive payment'; insurance policy bonus / lapsed policy maturity; wrong UPI transfer: 'I sent you money by mistake, please return it'.
+  Give extra weight to the stage: openings and trust building, but cover all stages.
+- 30 rows category=hard_negative (all BENIGN), mostly about: family lawyer reminding about a property paperwork deadline; gas cylinder booking / DTH recharge reminder; cousin asking to transfer money for a shared family function, openly.
+- 25 rows category=chat (all BENIGN): weather, health and family news.
+- The listener is often (not always) a ex-army man in Dehradun.
+- About a third of rows have spoken_noise=true.

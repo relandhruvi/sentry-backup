@@ -1,0 +1,37 @@
+# Institutions callers claim to represent. Aliases are normalized and fuzzy-matched like the
+# coercion lexicon. `kind` is used by verification (B6) to pick official sources.
+institutions:
+  - {name: Central Bureau of Investigation, kind: agency, aliases: [cbi, सीबीआई, central bureau of investigation]}
+  - {name: Enforcement Directorate, kind: agency, aliases: [enforcement directorate, प्रवर्तन निदेशालय, ed office]}
+  - {name: Narcotics Control Bureau, kind: agency, aliases: [narcotics control bureau, ncb, narcotics department]}
+  - {name: Customs, kind: agency, aliases: [customs department, customs officer, कस्टम विभाग, customs]}
+  - {name: Income Tax Department, kind: agency, aliases: [income tax department, आयकर विभाग, income tax]}
+  - {name: Police (Crime Branch), kind: police, aliases: [crime branch, क्राइम ब्रांच]}
+  - {name: Police (Cyber Crime), kind: police, aliases: [cyber crime, cyber cell, साइबर सेल, cyber police]}
+  - {name: Mumbai Police, kind: police, aliases: [mumbai police, मुंबई पुलिस]}
+  - {name: Delhi Police, kind: police, aliases: [delhi police, दिल्ली पुलिस]}
+  - {name: Police, kind: police, aliases: [police station, पुलिस स्टेशन, thana, थाना]}
+  - {name: Telecom Regulatory Authority of India, kind: regulator, aliases: [trai, ट्राई, telecom regulatory authority]}
+  - {name: Department of Telecommunications, kind: regulator, aliases: [department of telecom, telecom department]}
+  - {name: Reserve Bank of India, kind: regulator, aliases: [reserve bank, rbi, आरबीआई, रिज़र्व बैंक]}
+  - {name: Securities and Exchange Board of India, kind: regulator, aliases: [sebi, सेबी]}
+  - {name: Supreme Court of India, kind: court, aliases: [supreme court, सुप्रीम कोर्ट]}
+  - {name: State Bank of India, kind: bank, aliases: [state bank of india, state bank, sbi, एसबीआई, स्टेट बैंक]}
+  - {name: HDFC Bank, kind: bank, aliases: [hdfc bank, hdfc, एचडीएफसी]}
+  - {name: ICICI Bank, kind: bank, aliases: [icici bank, icici, आईसीआईसीआई]}
+  - {name: Axis Bank, kind: bank, aliases: [axis bank, एक्सिस बैंक]}
+  - {name: Punjab National Bank, kind: bank, aliases: [punjab national bank, pnb, पंजाब नेशनल बैंक]}
+  - {name: Bank of Baroda, kind: bank, aliases: [bank of baroda, बैंक ऑफ बड़ौदा]}
+  - {name: Kotak Mahindra Bank, kind: bank, aliases: [kotak mahindra, kotak bank, कोटक]}
+  - {name: FedEx, kind: courier, aliases: [fedex, फेडेक्स]}
+  - {name: DHL, kind: courier, aliases: [dhl, डीएचएल]}
+  - {name: Blue Dart, kind: courier, aliases: [blue dart, ब्लू डार्ट]}
+  - {name: India Post, kind: courier, aliases: [india post, डाक विभाग, post office]}
+  - {name: Airtel, kind: telecom, aliases: [airtel, एयरटेल]}
+  - {name: Jio, kind: telecom, aliases: [jio, जियो, reliance jio]}
+  - {name: BSNL, kind: telecom, aliases: [bsnl, बीएसएनएल]}
+  - {name: Electricity Board, kind: utility, aliases: [electricity board, bijli vibhag, बिजली विभाग, electricity department]}
+
+# UPI handle suffixes, used to recognise spoken UPI IDs ("ramesh at ybl"). A written "@handle"
+# with no dot in the domain is accepted even when the handle isn't listed.
+upi_handles: [ybl, ibl, axl, okaxis, oksbi, okhdfcbank, okicici, paytm, upi, apl, yapl, ptyes, ptaxis, pthdfc, ptsbi, axisbank, sbi, icici, hdfcbank, kotak, barodampay, freecharge, ikwik, jupiteraxis, waicici, idfcbank]

@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(./eval/human/**)",
+      "Edit(./eval/human/**)",
+      "Write(./eval/human/**)",
+      "Read(./backend/eval/human/**)",
+      "Edit(./backend/eval/human/**)",
+      "Write(./backend/eval/human/**)"
+    ]
+  }
+}

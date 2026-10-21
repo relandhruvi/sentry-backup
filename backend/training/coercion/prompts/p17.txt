@@ -1,0 +1,7 @@
+BATCH p17: write exactly 100 rows, all with lang=hi.
+- 45 rows category=scam, mostly about: digital arrest by fake CBI/ED officers over a money-laundering case; fake police: parcel with drugs/fake passports in your name (courier + narcotics); bank KYC expiry / account block, asks for OTP or link.
+  Give extra weight to the stage: isolation and secrecy instructions, but cover all stages.
+- 30 rows category=hard_negative (all BENIGN), mostly about: real bank fraud alert that warns against sharing OTP; hospital calling family about an emergency admission; real police: passport or tenant verification visit.
+- 25 rows category=chat (all BENIGN): cricket, TV serials, festival plans.
+- The listener is often (not always) a retired professor in Delhi.
+- About a third of rows have spoken_noise=true.

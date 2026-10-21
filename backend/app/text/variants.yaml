@@ -1,0 +1,44 @@
+# Spelling variants and known STT confusions, applied by app/text/normalize.py.
+# Entries are written in plain spelling; the loader passes both sides through the same
+# romanize + phonetic-key function used on live text, so they match whatever STT produces.
+
+# Token-level variants: every form on the right maps to the key on the left.
+variants:
+  hai: [he, hei, hain, hay]
+  nahi: [nhi, nahin, nai, nahee, nahiin]
+  bata: [btaa, bataa, btao, batao]
+  batana: [btana, bataana]
+  mat: [mt, matt]
+  karo: [kro, kr, kar do, kardo]
+  karna: [krna, karana]
+  kya: [kyaa, kia]
+  abhi: [abi, abhee, aabhi]
+  turant: [turunt, turnt]
+  paisa: [paise, paisaa, pesa, paisay]
+  rupaye: [rupay, rupees, rupee, rupe, ruppe, rs]
+  police: [pulis, polis, puliis]
+  account: [akaunt, akount, accaunt, acount]
+  transfer: [transafar, transfar, tranfer, trasfer]
+  otp: [oteepee, otipi, o t p]
+  verification: [verifikeshan, verifikeshn]
+  arrest: [arest, aress]
+  aadhaar: [aadhar, adhar, aadhaar card, adhaar]
+  # English contractions: "don't" tokenizes as "don t"; negation must stay a separate word.
+  do not: [don t, dont, do n't]
+  does not: [doesn t, doesnt]
+  did not: [didn t, didnt]
+  will not: [won t, wont]
+  can not: [can t, cant, cannot]
+  must not: [mustn t, mustnt]
+
+# Context-dependent STT confusions: replace `from` with `to` only when one of `near` occurs
+# within `window` tokens. Use `near: []` for confusions that are never a real word.
+confusions:
+  - {from: htfc, to: hdfc, near: []}
+  - {from: hdf c, to: hdfc, near: []}
+  - {from: brunch, to: branch, near: [bank, account, card, atm, manager, kyc, sbi, hdfc, icici], window: 8}
+  - {from: cibi, to: cbi, near: []}
+  # Whisper often hears "मत" (don't) as "मैद"/"मद" before "batana" ("किसी को मैद बताये").
+  - {from: maid, to: mat, near: [bata, batana, bataiye, batao, bataye, kahna], window: 2}
+  - {from: mad, to: mat, near: [bata, batana, bataiye, batao, bataye, kahna], window: 2}
+  - {from: see bi, to: cbi, near: [police, officer, case, arrest, inspector]}

@@ -1,0 +1,27 @@
+id: synthetic_scam_bank_otp
+category: scam
+speakers:
+  caller: {voice: Aman, rate: 175}
+  elder: {voice: Tara, rate: 160}
+turns:
+  - speaker: caller
+    lang: en
+    text: "Good afternoon madam, I am calling from the KYC department of State Bank of India."
+  - speaker: elder
+    lang: en
+    text: "Yes, what is it about?"
+  - speaker: caller
+    lang: en
+    text: "Your KYC has expired and your account will be blocked within two hours. All your pension money will be frozen."
+  - speaker: elder
+    lang: en
+    text: "Oh no. I went to the branch only last month."
+  - speaker: caller
+    lang: en
+    text: "Do not go to the branch, they will only delay it. Do not tell anyone, I am handling your case personally."
+  - speaker: caller
+    lang: en
+    text: "You will now receive a six digit OTP on your mobile. Please read it out to me quickly so I can stop the blocking."
+  - speaker: elder
+    lang: en
+    text: "Wait, let me find my glasses."

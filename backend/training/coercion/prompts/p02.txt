@@ -1,0 +1,7 @@
+BATCH p02: write exactly 100 rows, all with lang=hi.
+- 45 rows category=scam, mostly about: relative in trouble: grandson/son in accident or arrested, voice-clone style plea; electricity bill unpaid, connection cut tonight; TRAI / telecom: SIM to be disconnected, Aadhaar misuse.
+  Give extra weight to the stage: accusations and pressure, but cover all stages.
+- 30 rows category=hard_negative (all BENIGN), mostly about: delivery agent at the door asking for the delivery OTP; school calling a grandparent about a child; genuine family emergency (relative actually ill, needs help, no secrecy).
+- 25 rows category=chat (all BENIGN): cricket, TV serials, festival plans.
+- The listener is often (not always) a pensioner couple in Jaipur.
+- About a third of rows have spoken_noise=true.

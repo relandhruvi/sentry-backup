@@ -1,0 +1,343 @@
+# Coercion lexicon: weighted cues for 7 tactics, plus protective cues and negation scope.
+#
+# Patterns are written in natural spelling. At load time each one is passed through
+# app/text/normalize.py (romanize Devanagari, phonetic key, spelling variants), the same function
+# applied to live transcripts, then fuzzy-matched with rapidfuzz.
+#
+# Describe tactics, not specific calls: a pattern must be something many different scams (or
+# benign callers, for protective cues) would plausibly say. Weight = how strongly the phrase alone
+# indicates the tactic (0-1). Forms: English, Devanagari Hindi, romanized Hinglish, and Devanagari
+# spellings of English terms (Whisper writes romanized Hinglish speech in Devanagari).
+
+tactics:
+  AUTHORITY:
+    description: Claims to be police, an investigating agency, a regulator, a court or a bank official.
+    patterns:
+      - {p: "crime branch", w: 0.8}
+      - {p: "क्राइम ब्रांच", w: 0.8}
+      - {p: "cyber crime", w: 0.7}
+      - {p: "cyber cell", w: 0.7}
+      - {p: "साइबर सेल", w: 0.7}
+      - {p: "cbi", w: 0.8}
+      - {p: "सीबीआई", w: 0.8}
+      - {p: "central bureau of investigation", w: 0.9}
+      - {p: "enforcement directorate", w: 0.9}
+      - {p: "प्रवर्तन निदेशालय", w: 0.9}
+      - {p: "narcotics", w: 0.7}
+      - {p: "customs department", w: 0.7}
+      - {p: "customs officer", w: 0.7}
+      - {p: "कस्टम विभाग", w: 0.7}
+      - {p: "income tax department", w: 0.6}
+      - {p: "trai", w: 0.6}
+      - {p: "telecom department", w: 0.6}
+      - {p: "reserve bank", w: 0.7}
+      - {p: "rbi", w: 0.6}
+      - {p: "आरबीआई", w: 0.6}
+      - {p: "police station", w: 0.6}
+      - {p: "पुलिस स्टेशन", w: 0.6}
+      - {p: "police se bol raha hoon", w: 0.8}
+      - {p: "पुलिस से बोल रहा हूँ", w: 0.8}
+      - {p: "inspector", w: 0.6}
+      - {p: "इंस्पेक्टर", w: 0.6}
+      - {p: "officer", w: 0.4}
+      - {p: "अधिकारी", w: 0.5}
+      - {p: "adhikari", w: 0.5}
+      - {p: "investigating officer", w: 0.8}
+      - {p: "supreme court", w: 0.7}
+      - {p: "court order", w: 0.6}
+      - {p: "judge", w: 0.5}
+      - {p: "government official", w: 0.6}
+      - {p: "calling from the bank", w: 0.4}
+      - {p: "bank se bol raha hoon", w: 0.4}
+      - {p: "बैंक से बोल रहा हूँ", w: 0.4}
+      - {p: "kyc department", w: 0.5}
+      - {p: "kyc cell", w: 0.5}
+      - {p: "kyc team", w: 0.5}
+      - {p: "head office", w: 0.4}
+      - {p: "fraud department", w: 0.3}
+
+  THREAT:
+    description: Arrest, legal case, frozen account, disconnection, harm to a relative.
+    patterns:
+      - {p: "digital arrest", w: 1.0}
+      - {p: "डिजिटल अरेस्ट", w: 1.0}
+      - {p: "arrest warrant", w: 0.9}
+      - {p: "गिरफ्तारी वारंट", w: 0.9}
+      - {p: "you will be arrested", w: 0.9}
+      - {p: "you will go to jail", w: 0.8}
+      - {p: "you will be sent to jail", w: 0.8}
+      - {p: "he will go to jail", w: 0.8}
+      - {p: "giraftaar kar liya jayega", w: 0.9}
+      - {p: "गिरफ्तार कर लिया जाएगा", w: 0.9}
+      - {p: "giraftaar", w: 0.7}
+      - {p: "गिरफ्तार", w: 0.7}
+      - {p: "jail jaana padega", w: 0.8}
+      - {p: "जेल जाना पड़ेगा", w: 0.8}
+      - {p: "jail", w: 0.5}
+      - {p: "जेल", w: 0.5}
+      - {p: "fir darj", w: 0.7}
+      - {p: "एफआईआर दर्ज", w: 0.7}
+      - {p: "case registered against you", w: 0.8}
+      - {p: "aapke khilaf case", w: 0.8}
+      - {p: "आपके खिलाफ केस", w: 0.8}
+      - {p: "legal action", w: 0.7}
+      - {p: "kanooni karyavahi", w: 0.7}
+      - {p: "कानूनी कार्रवाई", w: 0.7}
+      - {p: "money laundering", w: 0.8}
+      - {p: "मनी लॉन्ड्रिंग", w: 0.8}
+      - {p: "drugs found", w: 0.8}
+      - {p: "drugs mile hain", w: 0.8}
+      - {p: "ड्रग्स मिले हैं", w: 0.8}
+      - {p: "illegal items in your parcel", w: 0.8}
+      - {p: "account will be blocked", w: 0.6}
+      - {p: "account block ho jayega", w: 0.6}
+      - {p: "अकाउंट ब्लॉक हो जाएगा", w: 0.6}
+      - {p: "khata band ho jayega", w: 0.6}
+      - {p: "खाता बंद हो जाएगा", w: 0.6}
+      - {p: "account will be frozen", w: 0.7}
+      - {p: "account will be suspended", w: 0.6}
+      - {p: "account will be closed", w: 0.5}
+      - {p: "has been detained", w: 0.6}
+      - {p: "detained", w: 0.5}
+      - {p: "avoid an fir", w: 0.7}
+      - {p: "money will be frozen", w: 0.7}
+      - {p: "sim will be blocked", w: 0.6}
+      - {p: "sim band ho jayega", w: 0.6}
+      - {p: "number will be disconnected", w: 0.5}
+      - {p: "electricity will be disconnected", w: 0.6}
+      - {p: "bijli kaat di jayegi", w: 0.6}
+      - {p: "बिजली काट दी जाएगी", w: 0.6}
+      - {p: "serious matter", w: 0.4}
+      - {p: "bahut serious case", w: 0.5}
+      - {p: "your son is in trouble", w: 0.6}
+      - {p: "police ne pakad liya", w: 0.6}
+      - {p: "पुलिस ने पकड़ लिया", w: 0.6}
+      - {p: "accident ho gaya", w: 0.4}
+      - {p: "एक्सीडेंट हो गया", w: 0.4}
+      - {p: "warna", w: 0.3}
+      - {p: "वरना", w: 0.3}
+      - {p: "otherwise you will", w: 0.4}
+
+  URGENCY:
+    description: Time pressure that prevents thinking or checking.
+    patterns:
+      - {p: "abhi turant", w: 0.8}
+      - {p: "अभी तुरंत", w: 0.8}
+      - {p: "turant", w: 0.6}
+      - {p: "तुरंत", w: 0.6}
+      - {p: "immediately", w: 0.6}
+      - {p: "right now", w: 0.5}
+      - {p: "within two hours", w: 0.7}
+      - {p: "within 2 hours", w: 0.7}
+      - {p: "do ghante mein", w: 0.7}
+      - {p: "दो घंटे में", w: 0.7}
+      - {p: "aaj shaam tak", w: 0.5}
+      - {p: "आज शाम तक", w: 0.5}
+      - {p: "before it is too late", w: 0.6}
+      - {p: "last chance", w: 0.6}
+      - {p: "der mat kijiye", w: 0.6}
+      - {p: "देर मत कीजिए", w: 0.6}
+      - {p: "quickly", w: 0.4}
+      - {p: "jaldi", w: 0.3}
+      - {p: "जल्दी", w: 0.3}
+      - {p: "abhi ke abhi", w: 0.7}
+      - {p: "no time", w: 0.4}
+      - {p: "emergency", w: 0.3}
+
+  SECRECY:
+    description: Tells the victim to keep the call secret.
+    patterns:
+      - {p: "do not tell anyone", w: 0.9}
+      - {p: "don't tell anyone", w: 0.9}
+      - {p: "kisi ko mat batana", w: 0.9}
+      - {p: "किसी को मत बताना", w: 0.9}
+      - {p: "kisi ko mat bataiye", w: 0.9}
+      - {p: "किसी को मत बताइए", w: 0.9}
+      - {p: "kisi ko kuch mat batana", w: 0.9}
+      - {p: "किसी को कुछ मत बताइए", w: 0.9}
+      - {p: "family ko mat batana", w: 0.9}
+      - {p: "parivar ko mat batana", w: 0.9}
+      - {p: "परिवार को मत बताइए", w: 0.9}
+      - {p: "bete ko bhi nahi", w: 0.7}
+      - {p: "बेटे को भी नहीं", w: 0.7}
+      - {p: "unko mat batana", w: 0.8}
+      - {p: "उनको मत बताना", w: 0.8}
+      - {p: "keep this confidential", w: 0.8}
+      - {p: "this is confidential", w: 0.7}
+      - {p: "confidential investigation", w: 0.9}
+      - {p: "gopniya", w: 0.8}
+      - {p: "गोपनीय", w: 0.8}
+      - {p: "secret", w: 0.5}
+      - {p: "do not share this call", w: 0.8}
+      - {p: "don't share this with anyone", w: 0.8}
+      - {p: "bank manager ko mat batana", w: 0.9}
+      - {p: "बैंक मैनेजर को मत बताइए", w: 0.9}
+      - {p: "do not inform the bank", w: 0.9}
+      - {p: "baat yahin tak rahegi", w: 0.7}
+      - {p: "don't tell your family", w: 0.9}
+      - {p: "keep this between us", w: 0.9}
+      - {p: "not discuss it with your family", w: 0.9}
+      - {p: "must not discuss this with anyone", w: 0.9}
+      - {p: "do not tell your son", w: 0.9}
+      - {p: "do not tell his father", w: 0.8}
+      - {p: "don't tell them", w: 0.7}
+      - {p: "national security", w: 0.6}
+
+  ISOLATION:
+    description: Keeps the victim on the line and away from people or institutions who could help.
+    patterns:
+      - {p: "do not disconnect", w: 0.9}
+      - {p: "don't disconnect", w: 0.9}
+      - {p: "call disconnect mat kariye", w: 0.9}
+      - {p: "कॉल डिस्कनेक्ट मत कीजिए", w: 0.9}
+      - {p: "phone mat kaatna", w: 0.9}
+      - {p: "फोन मत काटना", w: 0.9}
+      - {p: "do not hang up", w: 0.9}
+      - {p: "stay on the call", w: 0.8}
+      - {p: "stay on video call", w: 0.9}
+      - {p: "line par bane rahiye", w: 0.8}
+      - {p: "do not go to the branch", w: 0.8}
+      - {p: "branch mat jaiye", w: 0.8}
+      - {p: "बैंक मत जाइए", w: 0.8}
+      - {p: "do not call anyone", w: 0.9}
+      - {p: "kisi ko phone mat kijiye", w: 0.9}
+      - {p: "किसी को फोन मत कीजिए", w: 0.9}
+      - {p: "go to a separate room", w: 0.8}
+      - {p: "room band kar lijiye", w: 0.8}
+      - {p: "akele rahiye", w: 0.8}
+      - {p: "अकेले रहिए", w: 0.8}
+      - {p: "they will only delay it", w: 0.6}
+      - {p: "i am handling your case personally", w: 0.6}
+      - {p: "do not talk to anyone", w: 0.9}
+
+  PAYMENT:
+    description: Demands a transfer, deposit, fee, fine or "safe account" payment.
+    patterns:
+      - {p: "safe account", w: 1.0}
+      - {p: "सेफ अकाउंट", w: 1.0}
+      - {p: "secure account", w: 0.9}
+      - {p: "rbi account", w: 0.9}
+      - {p: "government account", w: 0.8}
+      - {p: "transfer karna hoga", w: 0.9}
+      - {p: "ट्रांसफर करना होगा", w: 0.9}
+      - {p: "transfer kar dijiye", w: 0.9}
+      - {p: "ट्रांसफर कर दीजिए", w: 0.9}
+      - {p: "transfer the money", w: 0.9}
+      - {p: "transfer the amount", w: 0.9}
+      - {p: "send the money", w: 0.8}
+      - {p: "paise bhejne honge", w: 0.9}
+      - {p: "पैसे भेजने होंगे", w: 0.9}
+      - {p: "paise bhej dijiye", w: 0.9}
+      - {p: "पैसा भेज दीजिए", w: 0.9}
+      - {p: "rupaye bhejne honge", w: 0.9}
+      - {p: "रुपये भेजने होंगे", w: 0.9}
+      - {p: "google pay kar do", w: 0.9}
+      - {p: "send on google pay", w: 0.9}
+      - {p: "pay on google pay", w: 0.9}
+      - {p: "send on phonepe", w: 0.9}
+      - {p: "google pay", w: 0.5}
+      - {p: "phonepe", w: 0.5}
+      - {p: "paytm", w: 0.5}
+      - {p: "send fifty thousand", w: 0.6}
+      - {p: "will be released", w: 0.4}
+      - {p: "phonepe kar do", w: 0.9}
+      - {p: "paytm kar do", w: 0.9}
+      - {p: "upi se bhejo", w: 0.9}
+      - {p: "pay through upi", w: 0.8}
+      - {p: "scan the qr code", w: 0.8}
+      - {p: "deposit the amount", w: 0.7}
+      - {p: "jama karna hoga", w: 0.6}
+      - {p: "जमा करना होगा", w: 0.6}
+      - {p: "processing fee", w: 0.7}
+      - {p: "verification fee", w: 0.8}
+      - {p: "security deposit", w: 0.6}
+      - {p: "penalty", w: 0.5}
+      - {p: "jurmana", w: 0.5}
+      - {p: "जुर्माना", w: 0.5}
+      - {p: "bail amount", w: 0.8}
+      - {p: "refundable", w: 0.6}
+      - {p: "paisa wapas mil jayega", w: 0.7}
+      - {p: "पैसा वापस मिल जाएगा", w: 0.7}
+      - {p: "you will get the money back", w: 0.7}
+      - {p: "gift card", w: 0.7}
+      - {p: "you have to transfer", w: 0.9}
+      - {p: "you need to pay", w: 0.7}
+      - {p: "send money now", w: 0.9}
+      - {p: "send twenty thousand", w: 0.6}
+      - {p: "transfer", w: 0.4}
+      - {p: "ट्रांसफर", w: 0.4}
+
+  CREDENTIAL:
+    description: Asks for an OTP, PIN, CVV, card or account details, or remote access to the phone.
+    patterns:
+      - {p: "read out the otp", w: 1.0}
+      - {p: "read it out to me", w: 0.6}
+      - {p: "tell me the otp", w: 1.0}
+      - {p: "share the otp", w: 1.0}
+      - {p: "otp batao", w: 1.0}
+      - {p: "otp bataiye", w: 1.0}
+      - {p: "ओटीपी बताइए", w: 1.0}
+      - {p: "otp share kijiye", w: 1.0}
+      - {p: "otp", w: 0.4}
+      - {p: "ओटीपी", w: 0.4}
+      - {p: "six digit code", w: 0.6}
+      - {p: "6 digit otp", w: 0.6}
+      - {p: "pin batao", w: 1.0}
+      - {p: "tell me your pin", w: 1.0}
+      - {p: "atm pin", w: 0.8}
+      - {p: "upi pin", w: 0.9}
+      - {p: "यूपीआई पिन", w: 0.9}
+      - {p: "cvv", w: 0.9}
+      - {p: "card number", w: 0.6}
+      - {p: "card ke peeche ka number", w: 0.8}
+      - {p: "net banking password", w: 1.0}
+      - {p: "password", w: 0.6}
+      - {p: "anydesk", w: 1.0}
+      - {p: "teamviewer", w: 1.0}
+      - {p: "quick support app", w: 0.9}
+      - {p: "screen share", w: 0.8}
+      - {p: "download this app", w: 0.7}
+      - {p: "app download kijiye", w: 0.7}
+      - {p: "click on the link", w: 0.6}
+      - {p: "link par click", w: 0.6}
+      - {p: "aadhaar number", w: 0.5}
+      - {p: "bank details", w: 0.6}
+      - {p: "account number", w: 0.4}
+
+# Cues that point AWAY from a scam: real institutions tell people to verify independently,
+# involve family, and never share credentials. They reduce the score (capped in weights.yaml).
+protective:
+  - {p: "never share your otp", w: 0.6}
+  - {p: "never ask for your otp", w: 0.6}
+  - {p: "never ask for your pin", w: 0.6}
+  - {p: "otp kisi ke saath share mat kijiye", w: 0.6}
+  - {p: "ओटीपी किसी को मत बताइए", w: 0.6}
+  - {p: "call us back on the number", w: 0.6}
+  - {p: "number printed on the back of your card", w: 0.7}
+  - {p: "official website", w: 0.3}
+  - {p: "visit your branch", w: 0.5}
+  - {p: "visit the branch", w: 0.5}
+  - {p: "visit branch", w: 0.5}
+  - {p: "go to your branch", w: 0.5}
+  - {p: "call the number on your card", w: 0.7}
+  - {p: "number on the back of your card", w: 0.7}
+  - {p: "do not share your otp", w: 0.6}
+  - {p: "do not share otp", w: 0.6}
+  - {p: "branch aa jaiye", w: 0.4}
+  - {p: "with your son", w: 0.4}
+  - {p: "beta ko bhi saath le aaiye", w: 0.5}
+  - {p: "बेटे को भी साथ ले आइए", w: 0.5}
+  - {p: "family ko bata dijiye", w: 0.5}
+  - {p: "discuss with your family", w: 0.5}
+  - {p: "take your time", w: 0.4}
+  - {p: "we have already blocked the card", w: 0.4}
+
+# Negation: a PAYMENT/CREDENTIAL hit with a negation token just before (or after) it is advice,
+# not a demand ("the bank will never ask for your OTP"). Not applied to SECRECY/ISOLATION, whose
+# patterns contain the negation themselves ("kisi ko mat batana").
+negation:
+  tokens: ["never", "not", "no", "dont", "don", "nahi", "nahin", "mat", "kabhi", "नहीं", "मत", "कभी"]
+  window_before: 4
+  window_after: 2
+  # PROTECTIVE too: "do not discuss it with your family" is the opposite of protective advice.
+  applies_to: [PAYMENT, CREDENTIAL, PROTECTIVE]

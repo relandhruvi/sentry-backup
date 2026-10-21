@@ -1,0 +1,7 @@
+BATCH p08: write exactly 100 rows, all with lang=hi.
+- 45 rows category=scam, mostly about: TRAI / telecom: SIM to be disconnected, Aadhaar misuse; fake customs: gift parcel from abroad held, pay duty; income tax refund / pension (EPFO, PF) verification.
+  Give extra weight to the stage: the money or credential ask and follow-ups after payment, but cover all stages.
+- 30 rows category=hard_negative (all BENIGN), mostly about: genuine family emergency (relative actually ill, needs help, no secrecy); electricity board announcing scheduled maintenance outage; bank relationship manager reminding about genuine FD renewal.
+- 25 rows category=chat (all BENIGN): recipes, shopping, neighbours.
+- The listener is often (not always) a shopkeeper's mother in Patna.
+- About a third of rows have spoken_noise=true.

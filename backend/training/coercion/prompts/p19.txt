@@ -1,0 +1,7 @@
+BATCH p19: write exactly 100 rows, all with lang=en.
+- 45 rows category=scam, mostly about: fake customs: gift parcel from abroad held, pay duty; income tax refund / pension (EPFO, PF) verification; tech support: computer infected, install AnyDesk, refund by mistake.
+  Give extra weight to the stage: isolation and secrecy instructions, but cover all stages.
+- 30 rows category=hard_negative (all BENIGN), mostly about: electricity board announcing scheduled maintenance outage; bank relationship manager reminding about genuine FD renewal; pharmacy / doctor clinic appointment reminder, take medicine now.
+- 25 rows category=chat (all BENIGN): travel plans, train tickets, weddings.
+- The listener is often (not always) a shopkeeper's mother in Patna.
+- About a third of rows have spoken_noise=true.

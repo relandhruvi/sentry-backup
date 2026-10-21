@@ -1,0 +1,21 @@
+id: synthetic_benign_urgent_school
+category: benign_urgent
+speakers:
+  caller: {voice: Lekha, rate: 165}
+  elder: {voice: Lekha, rate: 140}
+turns:
+  - speaker: caller
+    lang: hi
+    text: "नमस्ते, मैं सरस्वती विद्यालय से क्लास टीचर बोल रही हूँ।"
+  - speaker: elder
+    lang: hi
+    text: "हाँ, बताइए, सब ठीक है?"
+  - speaker: caller
+    lang: hi
+    text: "आपकी पोती को तेज़ बुखार है। कृपया जल्दी स्कूल आकर उसे घर ले जाइए।"
+  - speaker: elder
+    lang: hi
+    text: "अरे, मैं अभी उसकी माँ को फ़ोन करती हूँ और आती हूँ।"
+  - speaker: caller
+    lang: hi
+    text: "जी, ज़रूर। हम उसे नर्स के कमरे में आराम करवा रहे हैं।"

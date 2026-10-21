@@ -1,0 +1,7 @@
+BATCH p06: write exactly 100 rows, all with lang=hinglish.
+- 45 rows category=scam, mostly about: credit card reward points expiring / limit increase; digital arrest by fake CBI/ED officers over a money-laundering case; fake police: parcel with drugs/fake passports in your name (courier + narcotics).
+  Give extra weight to the stage: the money or credential ask and follow-ups after payment, but cover all stages.
+- 30 rows category=hard_negative (all BENIGN), mostly about: temple / NGO donation request, polite, no pressure; real bank fraud alert that warns against sharing OTP; hospital calling family about an emergency admission.
+- 25 rows category=chat (all BENIGN): weather, health and family news.
+- The listener is often (not always) a retired professor in Delhi.
+- About a third of rows have spoken_noise=true.

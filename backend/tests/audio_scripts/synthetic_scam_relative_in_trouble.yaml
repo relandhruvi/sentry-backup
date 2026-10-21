@@ -1,0 +1,24 @@
+id: synthetic_scam_relative_in_trouble
+category: scam
+speakers:
+  caller: {voice: Rishi, rate: 180}
+  elder: {voice: Tara, rate: 155}
+turns:
+  - speaker: caller
+    lang: hinglish
+    text: "Hello Nani, main Rahul ka dost Vikram bol raha hoon. Rahul ka accident ho gaya hai."
+  - speaker: elder
+    lang: en
+    text: "What? Is he okay? Where is he?"
+  - speaker: caller
+    lang: hinglish
+    text: "Woh theek hai, lekin police ne usko pakad liya hai. Gaadi ek aadmi ko lag gayi thi."
+  - speaker: caller
+    lang: hinglish
+    text: "Abhi turant bees hazaar rupaye bhejne honge, warna case file ho jayega aur usko jail jaana padega."
+  - speaker: elder
+    lang: en
+    text: "Let me call his father first."
+  - speaker: caller
+    lang: hinglish
+    text: "Nahi Nani, unko mat batana, Rahul ne mana kiya hai. Bas Google Pay kar do, main number bhejta hoon."

@@ -1,0 +1,7 @@
+BATCH p11: write exactly 100 rows, all with lang=hi.
+- 45 rows category=scam, mostly about: wrong UPI transfer: 'I sent you money by mistake, please return it'; credit card reward points expiring / limit increase; digital arrest by fake CBI/ED officers over a money-laundering case.
+  Give extra weight to the stage: openings and trust building, but cover all stages.
+- 30 rows category=hard_negative (all BENIGN), mostly about: cousin asking to transfer money for a shared family function, openly; temple / NGO donation request, polite, no pressure; real bank fraud alert that warns against sharing OTP.
+- 25 rows category=chat (all BENIGN): weather, health and family news.
+- The listener is often (not always) a retired doctor in Kolkata.
+- About a third of rows have spoken_noise=true.

@@ -1,0 +1,1160 @@
+# Trusted official sources for verification.
+#
+# PRIVACY RULE: only institutions in this file are ever searched online, and only by their
+# `name` (never what the person typed). A domain is used only when `confirmed: true`, i.e. an
+# official source confirms it:
+#   - banks (public sector, private, small finance, payments): RBI "Banks in India"
+#     (https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx), checked 2026-10-20
+#   - NPCI: RBI "Important Websites"
+#   - government bodies: the gov.in / nic.in registries are restricted to the Government of India
+#   - couriers: CBIC's register of authorised couriers; telecom operators: TRAI pages
+# Unconfirmed domains (former bank domains before the .bank.in move, bluedart.com, ...) are listed
+# with `confirmed: false` and are never searched. Re-check banks against RBI with
+# `make check-sources`. Foreign banks and regional rural banks are not listed yet.
+
+institutions:
+- id: sbi
+  name: State Bank of India
+  name_hi: भारतीय स्टेट बैंक
+  kind: bank
+  category: public_sector
+  rbi_name: State Bank of India
+  aliases:
+  - sbi
+  - state bank
+  - state bank of india
+  - एसबीआई
+  - स्टेट बैंक
+  - भारतीय स्टेट बैंक
+  - स्टेट बैंक ऑफ इंडिया
+  - स्टेट बैंक ऑफ़ इंडिया
+  domains:
+  - domain: sbi.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+  - domain: sbi.co.in
+    confirmed: false
+    source: null
+  - domain: onlinesbi.sbi
+    confirmed: false
+    source: null
+- id: bank_of_baroda
+  name: Bank of Baroda
+  name_hi: बैंक ऑफ़ बड़ौदा
+  kind: bank
+  category: public_sector
+  rbi_name: Bank of Baroda
+  aliases:
+  - bob
+  - baroda bank
+  - bank of baroda
+  - बैंक ऑफ बड़ौदा
+  - बड़ौदा बैंक
+  domains:
+  - domain: bankofbaroda.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+  - domain: bankofbaroda.in
+    confirmed: false
+    source: null
+- id: bank_of_india
+  name: Bank of India
+  name_hi: बैंक ऑफ़ इंडिया
+  kind: bank
+  category: public_sector
+  rbi_name: Bank of India
+  aliases:
+  - boi
+  - bank of india
+  - बैंक ऑफ इंडिया
+  domains:
+  - domain: bankofindia.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: bank_of_maharashtra
+  name: Bank of Maharashtra
+  name_hi: बैंक ऑफ़ महाराष्ट्र
+  kind: bank
+  category: public_sector
+  rbi_name: Bank of Maharashtra
+  aliases:
+  - bom
+  - mahabank
+  - bank of maharashtra
+  - बैंक ऑफ महाराष्ट्र
+  domains:
+  - domain: bankofmaharashtra.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: canara_bank
+  name: Canara Bank
+  name_hi: केनरा बैंक
+  kind: bank
+  category: public_sector
+  rbi_name: Canara Bank
+  aliases:
+  - canara
+  - canara bank
+  - कैनरा बैंक
+  domains:
+  - domain: canarabank.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: central_bank_of_india
+  name: Central Bank of India
+  name_hi: सेंट्रल बैंक ऑफ़ इंडिया
+  kind: bank
+  category: public_sector
+  rbi_name: Central Bank of India
+  aliases:
+  - cbi
+  - cboi
+  - central bank
+  - central bank of india
+  - सेंट्रल बैंक
+  domains:
+  - domain: centralbank.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: indian_bank
+  name: Indian Bank
+  name_hi: इंडियन बैंक
+  kind: bank
+  category: public_sector
+  rbi_name: Indian Bank
+  aliases:
+  - indian bank
+  domains:
+  - domain: indianbank.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: indian_overseas_bank
+  name: Indian Overseas Bank
+  name_hi: इंडियन ओवरसीज़ बैंक
+  kind: bank
+  category: public_sector
+  rbi_name: Indian Overseas Bank
+  aliases:
+  - iob
+  - indian overseas
+  - इंडियन ओवरसीज बैंक
+  domains:
+  - domain: iob.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: punjab_sind_bank
+  name: Punjab & Sind Bank
+  name_hi: पंजाब एंड सिंध बैंक
+  kind: bank
+  category: public_sector
+  rbi_name: Punjab & Sind Bank
+  aliases:
+  - psb
+  - p&sb
+  - punjab and sind
+  - punjab sind bank
+  - punjab & sind
+  - पंजाब एंड सिंध
+  - पंजाब सिंध बैंक
+  domains:
+  - domain: punjabandsind.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+  - domain: punjabandsindbank.co.in
+    confirmed: false
+    source: null
+- id: punjab_national_bank
+  name: Punjab National Bank
+  name_hi: पंजाब नेशनल बैंक
+  kind: bank
+  category: public_sector
+  rbi_name: Punjab National Bank
+  aliases:
+  - pnb
+  - punjab national
+  - पीएनबी
+  domains:
+  - domain: pnb.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+  - domain: pnbindia.in
+    confirmed: false
+    source: null
+- id: uco_bank
+  name: UCO Bank
+  name_hi: यूको बैंक
+  kind: bank
+  category: public_sector
+  rbi_name: UCO Bank
+  aliases:
+  - uco
+  - united commercial bank
+  domains:
+  - domain: uco.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: union_bank_of_india
+  name: Union Bank of India
+  name_hi: यूनियन बैंक ऑफ़ इंडिया
+  kind: bank
+  category: public_sector
+  rbi_name: Union Bank of India
+  aliases:
+  - ubi
+  - union bank
+  - union bank of india
+  - यूनियन बैंक
+  domains:
+  - domain: unionbankonline.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: axis_bank
+  name: Axis Bank
+  name_hi: एक्सिस बैंक
+  kind: bank
+  category: private
+  rbi_name: Axis Bank Limited
+  aliases:
+  - axis
+  - axis bank
+  domains:
+  - domain: axis.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+  - domain: axisbank.com
+    confirmed: false
+    source: null
+- id: bandhan_bank
+  name: Bandhan Bank
+  name_hi: बंधन बैंक
+  kind: bank
+  category: private
+  rbi_name: Bandhan Bank Limited
+  aliases:
+  - bandhan
+  domains:
+  - domain: bandhan.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: csb_bank
+  name: CSB Bank
+  name_hi: सीएसबी बैंक
+  kind: bank
+  category: private
+  rbi_name: CSB Bank Limited
+  aliases:
+  - csb
+  - catholic syrian bank
+  domains:
+  - domain: csb.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: city_union_bank
+  name: City Union Bank
+  name_hi: सिटी यूनियन बैंक
+  kind: bank
+  category: private
+  rbi_name: City Union Bank Limited
+  aliases:
+  - cub
+  - city union
+  domains:
+  - domain: cityunionbank.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: dcb_bank
+  name: DCB Bank
+  name_hi: डीसीबी बैंक
+  kind: bank
+  category: private
+  rbi_name: DCB Bank Limited
+  aliases:
+  - dcb
+  - development credit bank
+  domains:
+  - domain: dcb.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: dhanlaxmi_bank
+  name: Dhanlaxmi Bank
+  name_hi: धनलक्ष्मी बैंक
+  kind: bank
+  category: private
+  rbi_name: Dhanlaxmi Bank Limited
+  aliases:
+  - dhanlaxmi
+  - dhanlakshmi bank
+  domains:
+  - domain: dhan.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: federal_bank
+  name: Federal Bank
+  name_hi: फ़ेडरल बैंक
+  kind: bank
+  category: private
+  rbi_name: Federal Bank Limited
+  aliases:
+  - federal
+  - फेडरल बैंक
+  domains:
+  - domain: federal.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: hdfc_bank
+  name: HDFC Bank
+  name_hi: एचडीएफ़सी बैंक
+  kind: bank
+  category: private
+  rbi_name: HDFC Bank Limited
+  aliases:
+  - hdfc
+  - hdfc bank
+  - एचडीएफसी
+  - एचडीएफसी बैंक
+  domains:
+  - domain: hdfc.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+  - domain: hdfcbank.com
+    confirmed: false
+    source: null
+- id: icici_bank
+  name: ICICI Bank
+  name_hi: आईसीआईसीआई बैंक
+  kind: bank
+  category: private
+  rbi_name: ICICI Bank Limited
+  aliases:
+  - icici
+  - icici bank
+  - आईसीआईसीआई
+  domains:
+  - domain: icici.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+  - domain: icicibank.com
+    confirmed: false
+    source: null
+- id: indusind_bank
+  name: IndusInd Bank
+  name_hi: इंडसइंड बैंक
+  kind: bank
+  category: private
+  rbi_name: IndusInd Bank Limited
+  aliases:
+  - indusind
+  - indus ind bank
+  domains:
+  - domain: indusind.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: idfc_first_bank
+  name: IDFC FIRST Bank
+  name_hi: आईडीएफ़सी फ़र्स्ट बैंक
+  kind: bank
+  category: private
+  rbi_name: IDFC FIRST Bank Limited
+  aliases:
+  - idfc
+  - idfc first
+  - idfc bank
+  - आईडीएफसी
+  domains:
+  - domain: idfcfirst.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: jk_bank
+  name: Jammu & Kashmir Bank
+  name_hi: जम्मू एंड कश्मीर बैंक
+  kind: bank
+  category: private
+  rbi_name: Jammu & Kashmir Bank Limited
+  aliases:
+  - j&k bank
+  - jk bank
+  - jkb
+  - jammu and kashmir bank
+  - जे एंड के बैंक
+  domains:
+  - domain: jkb.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: karnataka_bank
+  name: Karnataka Bank
+  name_hi: कर्नाटक बैंक
+  kind: bank
+  category: private
+  rbi_name: Karnataka Bank Limited
+  aliases:
+  - karnataka bank
+  domains:
+  - domain: karnatakabank.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: karur_vysya_bank
+  name: Karur Vysya Bank
+  name_hi: करूर वैश्य बैंक
+  kind: bank
+  category: private
+  rbi_name: Karur Vysya Bank Limited
+  aliases:
+  - kvb
+  - karur vysya
+  domains:
+  - domain: kvb.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: kotak_mahindra_bank
+  name: Kotak Mahindra Bank
+  name_hi: कोटक महिंद्रा बैंक
+  kind: bank
+  category: private
+  rbi_name: Kotak Mahindra Bank Limited
+  aliases:
+  - kotak
+  - kotak bank
+  - kotak mahindra
+  - कोटक
+  domains:
+  - domain: kotak.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+  - domain: kotak.com
+    confirmed: false
+    source: null
+- id: nainital_bank
+  name: Nainital Bank
+  name_hi: नैनीताल बैंक
+  kind: bank
+  category: private
+  rbi_name: Nainital Bank Limited
+  aliases:
+  - nainital bank
+  domains:
+  - domain: nainitalbank.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: rbl_bank
+  name: RBL Bank
+  name_hi: आरबीएल बैंक
+  kind: bank
+  category: private
+  rbi_name: RBL Bank Limited
+  aliases:
+  - rbl
+  - ratnakar bank
+  domains:
+  - domain: rbl.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: south_indian_bank
+  name: South Indian Bank
+  name_hi: साउथ इंडियन बैंक
+  kind: bank
+  category: private
+  rbi_name: South Indian Bank Limited
+  aliases:
+  - sib
+  - south indian
+  domains:
+  - domain: southindianbank.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: tamilnad_mercantile_bank
+  name: Tamilnad Mercantile Bank
+  name_hi: तमिलनाड मर्केंटाइल बैंक
+  kind: bank
+  category: private
+  rbi_name: Tamilnad Mercantile Bank Limited
+  aliases:
+  - tmb
+  - tamilnad mercantile
+  - tamil nadu mercantile bank
+  domains:
+  - domain: tmb.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: yes_bank
+  name: YES Bank
+  name_hi: यस बैंक
+  kind: bank
+  category: private
+  rbi_name: YES Bank Limited
+  aliases:
+  - yes bank
+  domains:
+  - domain: yes.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: idbi_bank
+  name: IDBI Bank
+  name_hi: आईडीबीआई बैंक
+  kind: bank
+  category: private
+  rbi_name: IDBI Bank Limited
+  aliases:
+  - idbi
+  - idbi bank
+  domains:
+  - domain: idbi.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: au_sfb
+  name: AU Small Finance Bank
+  name_hi: एयू स्मॉल फ़ाइनेंस बैंक
+  kind: bank
+  category: small_finance
+  rbi_name: Au Small Finance Bank Limited
+  aliases:
+  - au bank
+  - au sfb
+  - au small finance
+  domains:
+  - domain: au.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: capital_sfb
+  name: Capital Small Finance Bank
+  name_hi: कैपिटल स्मॉल फ़ाइनेंस बैंक
+  kind: bank
+  category: small_finance
+  rbi_name: Capital Small Finance Bank Limited
+  aliases:
+  - capital bank
+  - capital sfb
+  domains:
+  - domain: capital.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: equitas_sfb
+  name: Equitas Small Finance Bank
+  name_hi: इक्विटास स्मॉल फ़ाइनेंस बैंक
+  kind: bank
+  category: small_finance
+  rbi_name: Equitas Small Finance Bank Limited
+  aliases:
+  - equitas
+  - equitas bank
+  domains:
+  - domain: equitas.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: esaf_sfb
+  name: ESAF Small Finance Bank
+  name_hi: ईसाफ़ स्मॉल फ़ाइनेंस बैंक
+  kind: bank
+  category: small_finance
+  rbi_name: ESAF Small Finance Bank Limited
+  aliases:
+  - esaf
+  - esaf bank
+  domains:
+  - domain: esaf.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: suryoday_sfb
+  name: Suryoday Small Finance Bank
+  name_hi: सूर्योदय स्मॉल फ़ाइनेंस बैंक
+  kind: bank
+  category: small_finance
+  rbi_name: Suryoday Small Finance Bank Limited
+  aliases:
+  - suryoday
+  - suryoday bank
+  domains:
+  - domain: suryoday.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: ujjivan_sfb
+  name: Ujjivan Small Finance Bank
+  name_hi: उज्जीवन स्मॉल फ़ाइनेंस बैंक
+  kind: bank
+  category: small_finance
+  rbi_name: Ujjivan Small Finance Bank Limited
+  aliases:
+  - ujjivan
+  - ujjivan bank
+  domains:
+  - domain: ujjivansfb.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: utkarsh_sfb
+  name: Utkarsh Small Finance Bank
+  name_hi: उत्कर्ष स्मॉल फ़ाइनेंस बैंक
+  kind: bank
+  category: small_finance
+  rbi_name: Utkarsh Small Finance Bank Limited
+  aliases:
+  - utkarsh
+  - utkarsh bank
+  domains:
+  - domain: utkarsh.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: slice_sfb
+  name: slice Small Finance Bank
+  name_hi: स्लाइस स्मॉल फ़ाइनेंस बैंक
+  kind: bank
+  category: small_finance
+  rbi_name: slice Small Finance Bank Limited
+  aliases:
+  - slice
+  - slice bank
+  - north east small finance bank
+  domains:
+  - domain: slice.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: jana_sfb
+  name: Jana Small Finance Bank
+  name_hi: जना स्मॉल फ़ाइनेंस बैंक
+  kind: bank
+  category: small_finance
+  rbi_name: Jana Small finance Bank Limited
+  aliases:
+  - jana bank
+  - jana sfb
+  domains:
+  - domain: jana.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: shivalik_sfb
+  name: Shivalik Small Finance Bank
+  name_hi: शिवालिक स्मॉल फ़ाइनेंस बैंक
+  kind: bank
+  category: small_finance
+  rbi_name: Shivalik Small Finance Bank Limited
+  aliases:
+  - shivalik
+  - shivalik bank
+  domains:
+  - domain: shivalik.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: unity_sfb
+  name: Unity Small Finance Bank
+  name_hi: यूनिटी स्मॉल फ़ाइनेंस बैंक
+  kind: bank
+  category: small_finance
+  rbi_name: Unity Small Finance Bank Limited
+  aliases:
+  - unity bank
+  - unity sfb
+  domains:
+  - domain: unity.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: ippb
+  name: India Post Payments Bank
+  name_hi: इंडिया पोस्ट पेमेंट्स बैंक
+  kind: bank
+  category: payments
+  rbi_name: India Post Payments Bank Limited
+  aliases:
+  - ippb
+  - post payments bank
+  - india post bank
+  domains:
+  - domain: ippbonline.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: fino_payments_bank
+  name: Fino Payments Bank
+  name_hi: फ़िनो पेमेंट्स बैंक
+  kind: bank
+  category: payments
+  rbi_name: Fino Payments Bank Limited
+  aliases:
+  - fino
+  - fino bank
+  domains:
+  - domain: fino.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: airtel_payments_bank
+  name: Airtel Payments Bank
+  name_hi: एयरटेल पेमेंट्स बैंक
+  kind: bank
+  category: payments
+  rbi_name: Airtel Payments Bank Limited
+  aliases:
+  - airtel payments
+  - airtel bank
+  domains:
+  - domain: airtelpayments.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: nsdl_payments_bank
+  name: NSDL Payments Bank
+  name_hi: एनएसडीएल पेमेंट्स बैंक
+  kind: bank
+  category: payments
+  rbi_name: NSDL Payments Bank Limited
+  aliases:
+  - nsdl payments
+  - nsdl bank
+  domains:
+  - domain: nsdlpayments.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: paytm_payments_bank
+  name: Paytm Payments Bank
+  name_hi: पेटीएम पेमेंट्स बैंक
+  kind: bank
+  category: payments
+  rbi_name: Paytm Payments Bank Limited
+  aliases:
+  - paytm bank
+  - paytm payments
+  domains:
+  - domain: paytm.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: jio_payments_bank
+  name: Jio Payments Bank
+  name_hi: जियो पेमेंट्स बैंक
+  kind: bank
+  category: payments
+  rbi_name: Jio Payments Bank Limited
+  aliases:
+  - jio payments
+  - jio bank
+  domains:
+  - domain: jiopayments.bank.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/BanksInIndia.aspx
+- id: rbi
+  name: Reserve Bank of India
+  name_hi: भारतीय रिज़र्व बैंक
+  kind: regulator
+  category: regulator
+  aliases:
+  - rbi
+  - reserve bank
+  - reserve bank of india
+  - आरबीआई
+  - रिज़र्व बैंक
+  - रिजर्व बैंक
+  domains:
+  - domain: rbi.org.in
+    confirmed: true
+    source: https://www.rbi.org.in (the regulator's own site; source of the bank list)
+- id: npci
+  name: National Payments Corporation of India
+  name_hi: भारतीय राष्ट्रीय भुगतान निगम
+  kind: regulator
+  category: payments
+  aliases:
+  - npci
+  - upi
+  - national payments corporation
+  - एनपीसीआई
+  domains:
+  - domain: npci.org.in
+    confirmed: true
+    source: https://www.rbi.org.in/commonperson/English/Scripts/OtherLinks.aspx
+- id: cbi
+  name: Central Bureau of Investigation
+  name_hi: केंद्रीय अन्वेषण ब्यूरो
+  kind: agency
+  category: police
+  aliases:
+  - cbi
+  - central bureau of investigation
+  - सीबीआई
+  domains:
+  - domain: cbi.gov.in
+    confirmed: true
+    source: gov.in / nic.in registry (Government of India only); site title checked via TinyFish 2026-10-20
+- id: ed
+  name: Enforcement Directorate
+  name_hi: प्रवर्तन निदेशालय
+  kind: agency
+  category: police
+  aliases:
+  - ed
+  - enforcement directorate
+  - directorate of enforcement
+  - ईडी
+  domains:
+  - domain: enforcementdirectorate.gov.in
+    confirmed: true
+    source: gov.in / nic.in registry (Government of India only); site title checked via TinyFish 2026-10-20
+- id: ncb
+  name: Narcotics Control Bureau
+  name_hi: नारकोटिक्स कंट्रोल ब्यूरो
+  kind: agency
+  category: police
+  aliases:
+  - ncb
+  - narcotics control bureau
+  - narcotics department
+  - एनसीबी
+  domains:
+  - domain: narcoticsindia.nic.in
+    confirmed: true
+    source: gov.in / nic.in registry (Government of India only); site title checked via TinyFish 2026-10-20
+- id: income_tax
+  name: Income Tax Department
+  name_hi: आयकर विभाग
+  kind: agency
+  category: tax
+  aliases:
+  - income tax
+  - income tax department
+  - it department
+  - इनकम टैक्स
+  - आयकर
+  domains:
+  - domain: incometax.gov.in
+    confirmed: true
+    source: gov.in / nic.in registry (Government of India only); site title checked via TinyFish 2026-10-20
+  - domain: incometaxindia.gov.in
+    confirmed: true
+    source: gov.in / nic.in registry (Government of India only); site title checked via TinyFish 2026-10-20
+- id: cbic
+  name: Customs (CBIC)
+  name_hi: सीमा शुल्क (सीबीआईसी)
+  kind: agency
+  category: tax
+  aliases:
+  - customs
+  - cbic
+  - customs department
+  - central board of indirect taxes and customs
+  - कस्टम
+  - कस्टम विभाग
+  - सीमा शुल्क
+  domains:
+  - domain: cbic.gov.in
+    confirmed: true
+    source: gov.in / nic.in registry (Government of India only); site title checked via TinyFish 2026-10-20
+- id: trai
+  name: Telecom Regulatory Authority of India
+  name_hi: भारतीय दूरसंचार विनियामक प्राधिकरण
+  kind: regulator
+  category: telecom
+  aliases:
+  - trai
+  - telecom regulatory authority
+  - ट्राई
+  domains:
+  - domain: trai.gov.in
+    confirmed: true
+    source: gov.in / nic.in registry (Government of India only); site title checked via TinyFish 2026-10-20
+- id: dot
+  name: Department of Telecommunications
+  name_hi: दूरसंचार विभाग
+  kind: agency
+  category: telecom
+  aliases:
+  - dot
+  - department of telecom
+  - telecom department
+  - दूरसंचार विभाग
+  domains:
+  - domain: dot.gov.in
+    confirmed: true
+    source: gov.in / nic.in registry (Government of India only); site title checked via TinyFish 2026-10-20
+- id: uidai
+  name: UIDAI (Aadhaar)
+  name_hi: भारतीय विशिष्ट पहचान प्राधिकरण (आधार)
+  kind: agency
+  category: identity
+  aliases:
+  - uidai
+  - aadhaar
+  - aadhar
+  - unique identification authority
+  - आधार
+  - यूआईडीएआई
+  domains:
+  - domain: uidai.gov.in
+    confirmed: true
+    source: gov.in / nic.in registry (Government of India only); site title checked via TinyFish 2026-10-20
+- id: cybercrime
+  name: National Cyber Crime Reporting Portal
+  name_hi: राष्ट्रीय साइबर अपराध रिपोर्टिंग पोर्टल
+  kind: agency
+  category: police
+  aliases:
+  - cybercrime
+  - cyber crime
+  - cyber cell
+  - cyber police
+  - '1930'
+  - साइबर क्राइम
+  - साइबर सेल
+  domains:
+  - domain: cybercrime.gov.in
+    confirmed: true
+    source: gov.in / nic.in registry (Government of India only); site title checked via TinyFish 2026-10-20
+- id: sebi
+  name: Securities and Exchange Board of India
+  name_hi: भारतीय प्रतिभूति और विनिमय बोर्ड
+  kind: regulator
+  category: regulator
+  aliases:
+  - sebi
+  - सेबी
+  domains:
+  - domain: sebi.gov.in
+    confirmed: true
+    source: gov.in / nic.in registry (Government of India only); site title checked via TinyFish 2026-10-20
+- id: mumbai_police
+  name: Mumbai Police
+  name_hi: मुंबई पुलिस
+  kind: police
+  category: police
+  aliases:
+  - mumbai police
+  - मुंबई पुलिस
+  domains:
+  - domain: mumbaipolice.gov.in
+    confirmed: true
+    source: gov.in / nic.in registry (Government of India only); site title checked via TinyFish 2026-10-20
+- id: delhi_police
+  name: Delhi Police
+  name_hi: दिल्ली पुलिस
+  kind: police
+  category: police
+  aliases:
+  - delhi police
+  - दिल्ली पुलिस
+  domains:
+  - domain: delhipolice.gov.in
+    confirmed: true
+    source: gov.in / nic.in registry (Government of India only); site title checked via TinyFish 2026-10-20
+- id: india_post
+  name: India Post
+  name_hi: भारतीय डाक
+  kind: courier
+  category: courier
+  aliases:
+  - india post
+  - post office
+  - postal department
+  - डाक विभाग
+  - इंडिया पोस्ट
+  - भारतीय डाक
+  domains:
+  - domain: indiapost.gov.in
+    confirmed: true
+    source: gov.in / nic.in registry (Government of India only); site title checked via TinyFish 2026-10-20
+- id: fedex
+  name: FedEx
+  name_hi: फ़ेडेक्स
+  kind: courier
+  category: courier
+  aliases:
+  - fedex
+  - fed ex
+  - फेडेक्स
+  domains:
+  - domain: fedex.com
+    confirmed: true
+    source: https://courier.cbic.gov.in/ECCS/courierTerminalList.jsp
+- id: dhl
+  name: DHL
+  name_hi: डीएचएल
+  kind: courier
+  category: courier
+  aliases:
+  - dhl
+  - dhl express
+  - डीएचएल
+  domains:
+  - domain: dhl.co.in
+    confirmed: true
+    source: https://courier.cbic.gov.in/ECCS/courierTerminalList.jsp
+  - domain: dhl.com
+    confirmed: false
+    source: null
+- id: dtdc
+  name: DTDC
+  name_hi: डीटीडीसी
+  kind: courier
+  category: courier
+  aliases:
+  - dtdc
+  - डीटीडीसी
+  domains:
+  - domain: dtdc.in
+    confirmed: true
+    source: https://courier.cbic.gov.in/ECCS/courierTerminalList.jsp
+  - domain: dtdc.com
+    confirmed: false
+    source: null
+- id: blue_dart
+  name: Blue Dart
+  name_hi: ब्लू डार्ट
+  kind: courier
+  category: courier
+  aliases:
+  - blue dart
+  - bluedart
+  - ब्लू डार्ट
+  domains:
+  - domain: bluedart.com
+    confirmed: false
+    source: null
+- id: airtel
+  name: Airtel
+  name_hi: एयरटेल
+  kind: telecom
+  category: telecom
+  aliases:
+  - airtel
+  - bharti airtel
+  - एयरटेल
+  domains:
+  - domain: airtel.in
+    confirmed: true
+    source: https://www.trai.gov.in/sites/default/files/2024-11/Airtel_Nodal_Officer_15122017_1.pdf
+- id: jio
+  name: Jio
+  name_hi: जियो
+  kind: telecom
+  category: telecom
+  aliases:
+  - jio
+  - reliance jio
+  - जियो
+  domains:
+  - domain: jio.com
+    confirmed: true
+    source: http://www.trai.gov.in/node/14416
+- id: bsnl
+  name: BSNL
+  name_hi: बीएसएनएल
+  kind: telecom
+  category: telecom
+  aliases:
+  - bsnl
+  - bharat sanchar nigam
+  - बीएसएनएल
+  domains:
+  - domain: bsnl.co.in
+    confirmed: true
+    source: http://www.trai.gov.in/consumer-info/cgr/appellate-authority
+
+advisory_domains:
+- cybercrime.gov.in
+- rbi.org.in
+- sachet.rbi.org.in
+- pib.gov.in
+- npci.org.in
+- mha.gov.in
+- cert-in.org.in
+- dot.gov.in
+contact_query: '{name} customer care helpline toll free number'
+contact_keywords:
+- customer care
+- helpline
+- toll free
+- toll-free
+- call us
+- contact us
+- phone banking
+- 24x7
+contact_strong_keywords:
+- customer care
+- phone banking
+- phonebanking
+- helpline
+- contact centre
+- contact center
+contact_deprioritize:
+- homeloan
+- home-loan
+- home loan
+- credit-card
+- credit card
+- loan
+- insurance
+- mutual-fund
+- demat
+- nri
+- securities
+- life
+- forex
+- terms-and-conditions
+- .pdf
+- press
+- news
+- tender
+- recruit
+- notice
+- circular
+- result
+- vacanc
+scenarios:
+- id: digital_arrest
+  when:
+    identity_types:
+    - police
+    - government
+    asked_to_any:
+    - video_call
+    - go_alone
+    - secrecy
+    - money
+  query: digital arrest fraud advisory video call police CBI
+- id: bank_otp
+  when:
+    identity_types:
+    - bank
+    asked_to_any:
+    - otp
+    - install_app
+  query: never share OTP bank fraud advisory
+- id: courier_parcel
+  when:
+    identity_types:
+    - courier
+    asked_to_any:
+    - money
+    - otp
+    - video_call
+  query: courier parcel scam drugs customs fraud advisory
+- id: telecom_sim
+  when:
+    identity_types:
+    - telecom
+    asked_to_any:
+    - money
+    - otp
+    - install_app
+    - video_call
+  query: SIM disconnection mobile number misuse fraud call advisory
+- id: remote_access
+  when:
+    identity_types:
+    - bank
+    - company
+    - telecom
+    asked_to_any:
+    - install_app
+  query: remote access app screen sharing fraud advisory
+- id: upi_payment
+  when:
+    identity_types: []
+    asked_to_any:
+    - money
+  query: UPI payment fraud advisory do not send money to unknown callers
+- id: generic
+  when:
+    identity_types: []
+    asked_to_any: []
+  query: phone call fraud advisory report cybercrime 1930
+report_query: '"{value}" fraud OR scam'
+report_words:
+- fraud
+- scam
+- fake
+- cheat
+- complaint
+- spam
+- धोखा
+- ठगी

@@ -1,0 +1,77 @@
+{
+  "generated_valid": 3300,
+  "dropped_invalid": {},
+  "dedupe": {
+    "threshold": 0.75,
+    "removed": 22,
+    "label_conflicts_among_removed": 1
+  },
+  "final": {
+    "rows": 3278,
+    "by_lang": {
+      "en": 1096,
+      "hi": 1091,
+      "hinglish": 1091
+    },
+    "by_category": {
+      "scam": 1477,
+      "hard_negative": 977,
+      "chat": 824
+    },
+    "by_label": {
+      "AUTHORITY": 332,
+      "THREAT": 420,
+      "URGENCY": 274,
+      "SECRECY": 218,
+      "ISOLATION": 265,
+      "PAYMENT": 396,
+      "CREDENTIAL": 204,
+      "BENIGN": 1965
+    },
+    "by_label_lang": {
+      "AUTHORITY": {
+        "en": 130,
+        "hi": 93,
+        "hinglish": 109
+      },
+      "THREAT": {
+        "en": 163,
+        "hi": 134,
+        "hinglish": 123
+      },
+      "URGENCY": {
+        "en": 103,
+        "hi": 84,
+        "hinglish": 87
+      },
+      "SECRECY": {
+        "en": 79,
+        "hi": 64,
+        "hinglish": 75
+      },
+      "ISOLATION": {
+        "en": 92,
+        "hi": 87,
+        "hinglish": 86
+      },
+      "PAYMENT": {
+        "en": 130,
+        "hi": 136,
+        "hinglish": 130
+      },
+      "CREDENTIAL": {
+        "en": 60,
+        "hi": 67,
+        "hinglish": 77
+      },
+      "BENIGN": {
+        "en": 648,
+        "hi": 653,
+        "hinglish": 664
+      }
+    },
+    "multi_label_rows": 658,
+    "spoken_noise_rows": 1073,
+    "prompts": 33
+  }
+}

@@ -1,0 +1,7 @@
+BATCH p20: write exactly 100 rows, all with lang=hi.
+- 45 rows category=scam, mostly about: lottery / KBC prize / lucky draw, pay processing fee; investment or stock tip group, guaranteed returns; sextortion: obscene video call recorded, pay or it gets leaked.
+  Give extra weight to the stage: the money or credential ask and follow-ups after payment, but cover all stages.
+- 30 rows category=hard_negative (all BENIGN), mostly about: society secretary: urgent water tank cleaning, pay maintenance at office; real insurance agent: policy renewal due next month; grandchild warning grandparent about scam calls.
+- 25 rows category=chat (all BENIGN): grandchildren's studies, pets, garden.
+- The listener is often (not always) a farmer's father in a village near Ludhiana.
+- About a third of rows have spoken_noise=true.

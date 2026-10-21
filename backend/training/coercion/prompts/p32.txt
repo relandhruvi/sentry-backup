@@ -1,0 +1,7 @@
+BATCH p32: write exactly 100 rows, all with lang=hi.
+- 45 rows category=scam, mostly about: insurance policy bonus / lapsed policy maturity; wrong UPI transfer: 'I sent you money by mistake, please return it'; credit card reward points expiring / limit increase.
+  Give extra weight to the stage: the money or credential ask and follow-ups after payment, but cover all stages.
+- 30 rows category=hard_negative (all BENIGN), mostly about: gas cylinder booking / DTH recharge reminder; cousin asking to transfer money for a shared family function, openly; temple / NGO donation request, polite, no pressure.
+- 25 rows category=chat (all BENIGN): cricket, TV serials, festival plans.
+- The listener is often (not always) a ex-army man in Dehradun.
+- About a third of rows have spoken_noise=true.
